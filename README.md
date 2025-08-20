@@ -1,4 +1,4 @@
-# 🚀 Portfolio - Marcos Rubi Guevara
+# 🚀 Portfolio - DEV
 
 <div align="center">
 
@@ -91,7 +91,7 @@
 
    ```bash
    git clone https://github.com/Mrk2016/ReworkPortfolio.git
-   cd portfolio-astro
+   cd ReworkPortfolio
    ```
 
 2. **Instalar dependencias**
