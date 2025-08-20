@@ -1,0 +1,110 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Mi Portafolio - Fullstack Developer",
+  description = "Desarrollador Fullstack especializado en tecnologías modernas tanto del frontend como del backend.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/icon.ico" />
+  </head>
+  <body class="m-0 p-0 box-border">
+    <!-- Fondo animado -->
+    <div class="bg-gradient-animated fixed top-0 left-0 w-full h-full -z-10">
+    </div>
+
+    <!-- Contenido principal -->
+    <slot />
+
+    <script>
+      // Smooth scrolling para los enlaces de navegación
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          e.preventDefault();
+          const href = anchor.getAttribute("href");
+          if (href) {
+            const target = document.querySelector(href);
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          }
+        });
+      });
+
+      // Crear partículas flotantes
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.animationDuration = Math.random() * 8 + 8 + "s";
+        particle.style.animationDelay = Math.random() * 2 + "s";
+
+        const bgAnimation = document.querySelector(".bg-gradient-animated");
+        if (bgAnimation) {
+          bgAnimation.appendChild(particle);
+
+          // Remover la partícula después de la animación
+          setTimeout(() => {
+            if (particle.parentNode) {
+              particle.remove();
+            }
+          }, 10000);
+        }
+      }
+
+      // Crear partículas cada cierto tiempo
+      setInterval(createParticle, 500);
+
+      // Animación de aparición para las secciones
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observar todas las secciones al cargar la página
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("section").forEach((section) => {
+          if (section instanceof HTMLElement) {
+            section.style.opacity = "0";
+            section.style.transform = "translateY(50px)";
+            section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            observer.observe(section);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

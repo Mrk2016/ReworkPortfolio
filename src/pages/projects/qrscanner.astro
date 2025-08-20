@@ -1,0 +1,499 @@
+---
+// src/pages/projects/qr-generator-ufidelitas.astro
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import WordpressIcon from "../../components/icons/WordpressIcon.astro";
+import MysqlIcon from "../../components/icons/MysqlIcon.astro";
+import GithubIcon from "../../components/icons/GithubIcon.astro";
+import PhpIcon from "../../components/icons/PhpIcon.astro";
+
+const projectData = {
+  title: "QR Code Generator",
+  description:
+    "Plugin especializado para WordPress que genera, lee y valida códigos QR para la gestión completa de ferias vocacionales. Incluye generación automática de QR tras registro en formularios, lectores de validación de entrada y sistema de control de entregas de alimentos con panel administrativo integrado.",
+  image: "/images/projects/qrfide/qrfide.png",
+  category: "Plugins",
+  status: "Completado",
+  duration: "3 semanas",
+  demoUrl: "#",
+  githubUrl: "#",
+  features: [
+    "Generación automática de códigos QR tras completar formularios Ninja Forms",
+    "Integración con API externa GoQR.me para generación de códigos",
+    "Sistema de lectores QR con validación en tiempo real",
+    "Validación de entrada mediante verificación de registro en formularios",
+    "Scanner especializado para control de entregas de alimentos",
+    "Panel administrativo para configuración de formularios y campos",
+    "Pruebas de conexión a base de datos integradas",
+    "Shortcodes para inserción fácil en páginas con Elementor",
+    "Registro automático de participantes y entregas en base de datos",
+    "Sistema de logs para seguimiento de actividades",
+    "Interfaz responsive para uso en dispositivos móviles",
+    "Dashboard de estadísticas de eventos y participación",
+  ],
+  challenges: [
+    "Integrar múltiples sistemas: Ninja Forms, Elementor y base de datos personalizada",
+    "Implementar lectores QR confiables en navegadores web",
+    "Sincronizar datos entre formularios de registro y sistema de validación",
+    "Crear sistema dual de scanners para diferentes propósitos",
+    "Manejar gran volumen de participantes durante eventos en vivo",
+  ],
+  solutions: [
+    "Uso de API externa GoQR.me para generación confiable de códigos QR",
+    "Implementación de librería QR-Scanner para lectura en navegador",
+    "Desarrollo de hooks personalizados para integración con Ninja Forms",
+    "Sistema de shortcodes modulares para máxima flexibilidad",
+    "Base de datos optimizada con índices para consultas rápidas en tiempo real",
+  ],
+  gallery: [
+    "/images/projects/qrfide/qr-generator.jpg",
+    "/images/projects/qrfide/qr-scanner.jpg",
+    "/images/projects/qrfide/admin-panel.jpg",
+    "/images/projects/qrfide/validation-system.jpg",
+    "/images/projects/qrfide/food-control.jpg",
+  ],
+};
+---
+
+<ProjectLayout {...projectData}>
+  <!-- WordPress -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <WordpressIcon class="w-8 h-8" fill="#fff" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">WordPress</h3>
+    <p class="text-gray-400 text-sm">Plataforma base del plugin</p>
+  </div>
+
+  <!-- MySQL -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <MysqlIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">MySQL</h3>
+    <p class="text-gray-400 text-sm">Base de datos para registros</p>
+  </div>
+
+  <!-- GitHub -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <GithubIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">GitHub</h3>
+    <p class="text-gray-400 text-sm">Control de versiones</p>
+  </div>
+
+  <!-- PHP -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <PhpIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">PHP</h3>
+    <p class="text-gray-400 text-sm">Desarrollo backend del plugin</p>
+  </div>
+
+  <!-- Contenido específico del proyecto -->
+  <div class="space-y-8">
+    <!-- Descripción del Proyecto -->
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-4">Sobre el Proyecto</h2>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        Este plugin fue desarrollado específicamente para optimizar la gestión
+        de las ferias vocacionales anuales de la Universidad Fidélitas. El
+        sistema automatiza completamente el proceso desde el registro de
+        participantes hasta el control de acceso y entrega de alimentos durante
+        el evento.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        La solución integra múltiples tecnologías para crear un flujo de trabajo
+        sin fricciones: los usuarios se registran mediante Ninja Forms, reciben
+        automáticamente un código QR único, y el personal del evento puede
+        validar entradas y controlar entregas usando lectores especializados.
+      </p>
+    </div>
+
+    <!-- Arquitectura del Sistema -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Arquitectura del Sistema
+      </h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">Generación de QR</h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Hook personalizado con Ninja Forms</li>
+              <li>• Integración con API GoQR.me</li>
+              <li>• Generación automática post-registro</li>
+              <li>• Shortcode para inserción en Elementor</li>
+              <li>• Redirección automática a página de QR</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Sistema de Validación
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Lectores QR con librería QR-Scanner</li>
+              <li>• Validación en tiempo real contra formularios</li>
+              <li>• Scanner para control de entregas de alimentos</li>
+              <li>• Registro de actividades en base de datos</li>
+              <li>• Panel administrativo de configuración</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flujo de Trabajo -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Flujo de Trabajo del Sistema
+      </h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              1
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Registro en Landing Page
+              </h5>
+              <p class="text-gray-300 text-sm">
+                El usuario accede a la landing page de la feria vocacional y
+                completa el formulario de registro mediante Ninja Forms con sus
+                datos personales.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              2
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Generación Automática de QR
+              </h5>
+              <p class="text-gray-300 text-sm">
+                Al enviar el formulario, el plugin intercepta la acción y genera
+                automáticamente un código QR único usando la API de GoQR.me.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              3
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Redirección y Entrega de QR
+              </h5>
+              <p class="text-gray-300 text-sm">
+                El usuario es redirigido automáticamente a una página donde
+                puede visualizar y descargar su código QR personalizado para la
+                entrada.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              4
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Validación en Evento
+              </h5>
+              <p class="text-gray-300 text-sm">
+                Durante la feria, el personal usa los lectores QR para validar
+                entradas y controlar entregas de alimentos, con verificación en
+                tiempo real.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funcionalidades Destacadas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Funcionalidades Destacadas
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Generación QR -->
+        <div class="bg-green-500/5 rounded-2xl p-6 border border-green-500/10">
+          <h4 class="text-green-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
+              ></path>
+            </svg>
+            Generación Automática de QR
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Integración perfecta con Ninja Forms que genera códigos QR únicos
+            automáticamente tras el registro, usando la API externa GoQR.me para
+            máxima confiabilidad y calidad de códigos.
+          </p>
+        </div>
+
+        <!-- Lectores Especializados -->
+        <div class="bg-blue-500/5 rounded-2xl p-6 border border-blue-500/10">
+          <h4 class="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            Lectores QR Especializados
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Sistema dual de scanners: uno para validación de entrada que
+            verifica el registro en formularios, y otro para control de entregas
+            de alimentos con registro directo en base de datos personalizada.
+          </p>
+        </div>
+
+        <!-- Panel Administrativo -->
+        <div
+          class="bg-purple-500/5 rounded-2xl p-6 border border-purple-500/10"
+        >
+          <h4
+            class="text-purple-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            Panel de Configuración
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Dashboard administrativo completo para configurar formularios,
+            gestionar campos requeridos, realizar pruebas de conexión a base de
+            datos y monitorear estadísticas del evento.
+          </p>
+        </div>
+
+        <!-- Integración Elementor -->
+        <div
+          class="bg-yellow-500/5 rounded-2xl p-6 border border-yellow-500/10"
+        >
+          <h4
+            class="text-yellow-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
+              ></path>
+            </svg>
+            Integración con Elementor
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Sistema de shortcodes modulares que permite insertar fácilmente
+            generadores de QR y lectores en cualquier página construida con
+            Elementor, proporcionando máxima flexibilidad de ubicación.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- APIs y Librerías Utilizadas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        APIs y Librerías Integradas
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- GoQR.me API -->
+        <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+          <h4 class="text-green-400 font-semibold mb-4 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              ></path>
+            </svg>
+            GoQR.me API
+          </h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li>
+              • <strong>Función:</strong> Generación de códigos QR de alta calidad
+            </li>
+            <li>
+              • <strong>Ventaja:</strong> API externa confiable y rápida
+            </li>
+            <li>
+              • <strong>Uso:</strong> Creación automática tras registro en formularios
+            </li>
+            <li>
+              • <strong>Formato:</strong> Imágenes PNG optimizadas para impresión
+            </li>
+          </ul>
+        </div>
+
+        <!-- QR-Scanner Library -->
+        <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+          <h4 class="text-blue-400 font-semibold mb-4 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+              ></path>
+            </svg>
+            QR-Scanner Library
+          </h4>
+          <ul class="space-y-2 text-gray-300 text-sm">
+            <li>
+              • <strong>Función:</strong> Lectura de códigos QR en navegador
+            </li>
+            <li>
+              • <strong>Ventaja:</strong> Compatible con cámaras web y móviles
+            </li>
+            <li>
+              • <strong>Uso:</strong> Validación de entrada y control de entregas
+            </li>
+            <li>
+              • <strong>Performance:</strong> Lectura rápida y precisa en tiempo
+              real
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas del Proyecto -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Métricas del Proyecto</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">3</div>
+          <div class="text-gray-400 text-sm">Shortcodes Creados</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">2</div>
+          <div class="text-gray-400 text-sm">Tipos de Scanner</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">3000+</div>
+          <div class="text-gray-400 text-sm">QR Generados por Evento</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">&lt;2s</div>
+          <div class="text-gray-400 text-sm">Tiempo de Validación</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusión -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Resultados y Aprendizajes
+      </h3>
+      <div
+        class="bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl p-6 border border-green-500/20"
+      >
+        <p class="text-gray-300 leading-relaxed mb-4">
+          El plugin QR Generator revolucionó la gestión de las ferias
+          vocacionales de la Universidad Fidélitas, automatizando completamente
+          el proceso desde el registro hasta el control de acceso y entregas. La
+          integración perfecta con el ecosistema WordPress existente permitió
+          una implementación sin fricciones.
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          Este proyecto demostró la importancia de crear soluciones específicas
+          para necesidades puntuales, combinando APIs externas confiables con
+          desarrollo personalizado para lograr un sistema robusto y eficiente
+          que mejora significativamente la experiencia tanto de organizadores
+          como de participantes en eventos masivos.
+        </p>
+      </div>
+    </div>
+  </div>
+</ProjectLayout>

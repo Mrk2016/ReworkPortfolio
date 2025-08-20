@@ -1,0 +1,414 @@
+---
+// src/pages/projects/serendipity-adventure.astro
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import WordpressIcon from "../../components/icons/WordpressIcon.astro";
+import AcfIcon from "../../components/icons/AcfIcon.astro";
+import DiviIcon from "../../components/icons/DiviIcon.astro";
+import PhpIcon from "../../components/icons/PhpIcon.astro";
+
+const projectData = {
+  title: "Serendipity Adventure",
+  description:
+    "Rediseño completo del sitio web para empresa de viajes turísticos, implementando una interfaz moderna y experiencia de usuario atractiva. Desarrollo con WordPress, Divi y bloques personalizados con ACF para gestión de contenido turístico.",
+  image: "/images/projects/serendipity/serendipity.png",
+  category: "Web",
+  status: "Completado",
+  duration: "2 meses",
+  demoUrl: "https://www.serendipityadventures.com/",
+  githubUrl: "#",
+  features: [
+    "Rediseño completo de interfaz siguiendo mockups de diseñadores",
+    "Desarrollo de plantillas personalizadas con Divi Builder",
+    "Custom Post Types para contenido de cada sección del sitio",
+    "Bloques personalizados de Gutenberg desarrollados con ACF",
+    "Sistema de gestión de contenido turístico especializado",
+    "Optimización SEO para contenido de viajes y destinos",
+    "Integración de galerías de imágenes para tours y destinos",
+    "Sistema de filtros avanzados para búsqueda de contenido",
+    "Formularios de contacto especializados para reservas y CTA",
+    "Optimización de rendimiento y carga de imágenes",
+    "Responsive design para todos los dispositivos",
+    "Integración con redes sociales y testimonios de clientes",
+  ],
+  challenges: [
+    "Adaptar diseños complejos de mockups a código funcional",
+    "Integrar Divi Builder con desarrollo personalizado",
+    "Crear bloques de Gutenberg compatibles con el ecosistema existente",
+    "Organizar gran cantidad de contenido turístico de forma intuitiva",
+    "Mantener rendimiento óptimo con contenido multimedia extenso",
+  ],
+  solutions: [
+    "Desarrollo de plantillas Divi modulares y reutilizables",
+    "Creación de Custom Post Types especializados para turismo",
+    "Implementación de bloques ACF con funcionalidades específicas",
+    "Sistema de taxonomías para categorización avanzada de contenido",
+    "Optimización de imágenes y lazy loading para mejor performance",
+  ],
+  gallery: [
+    "/images/projects/serendipity/gallery1.jpg",
+    "/images/projects/serendipity/gallery2.jpg",
+    "/images/projects/serendipity/gallery3.jpg",
+    "/images/projects/serendipity/gallery4.jpg",
+    "/images/projects/serendipity/gallery5.jpg",
+  ],
+};
+---
+
+<ProjectLayout {...projectData}>
+  <!-- WordPress -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <WordpressIcon class="w-8 h-8" fill="#fff" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">WordPress</h3>
+    <p class="text-gray-400 text-sm">CMS y plataforma de desarrollo</p>
+  </div>
+
+  <!-- ACF -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <AcfIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">ACF</h3>
+    <p class="text-gray-400 text-sm">Campos personalizados y bloques</p>
+  </div>
+
+  <!-- Divi -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <DiviIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">Divi</h3>
+    <p class="text-gray-400 text-sm">Page builder y diseño visual</p>
+  </div>
+
+  <!-- PHP -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <PhpIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">PHP</h3>
+    <p class="text-gray-400 text-sm">Desarrollo backend personalizado</p>
+  </div>
+
+  <!-- Contenido específico del proyecto -->
+  <div class="space-y-8">
+    <!-- Descripción del Proyecto -->
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-4">Sobre el Proyecto</h2>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        Serendipity Adventure requería un rediseño completo de su sitio web para
+        mejor representar sus servicios de turismo y aventura. El proyecto se
+        desarrolló en múltiples fases, combinando el poder de Divi Builder con
+        desarrollo personalizado para crear una experiencia única y funcional.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        El desafío principal fue traducir los diseños proporcionados por sus
+        diseñadores a código funcional, manteniendo la fidelidad visual mientras
+        se optimizaba la experiencia de usuario y la gestión de contenido
+        turístico.
+      </p>
+    </div>
+
+    <!-- Metodología de Desarrollo -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Metodología de Desarrollo
+      </h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Fase 1: Análisis y Estructura
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Análisis de mockups y requerimientos del cliente</li>
+              <li>
+                • Definición de Custom Post Types para contenido turístico
+              </li>
+              <li>• Planificación de taxonomías y estructura de datos</li>
+              <li>• Configuración base de WordPress y Divi</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Fase 2: Desarrollo y Implementación
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Creación de plantillas Divi personalizadas</li>
+              <li>• Desarrollo de bloques Gutenberg con ACF</li>
+              <li>• Implementación de funcionalidades específicas</li>
+              <li>• Optimización y testing en diferentes dispositivos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funcionalidades Destacadas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Funcionalidades Destacadas
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Custom Post Types -->
+        <div class="bg-green-500/5 rounded-2xl p-6 border border-green-500/10">
+          <h4 class="text-green-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+              ></path>
+            </svg>
+            Custom Post Types Especializados
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Desarrollo de tipos de contenido personalizados para tours,
+            destinos, paquetes turísticos y testimonios, con campos específicos
+            para cada tipo de contenido y gestión centralizada.
+          </p>
+        </div>
+
+        <!-- Bloques Personalizados -->
+        <div class="bg-blue-500/5 rounded-2xl p-6 border border-blue-500/10">
+          <h4 class="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
+              ></path>
+            </svg>
+            Bloques ACF Personalizados
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Creación de bloques de Gutenberg especializados usando ACF para
+            galerías de tours, secciones de destinos, formularios de reserva y
+            elementos interactivos únicos del sector turístico.
+          </p>
+        </div>
+
+        <!-- Plantillas Divi -->
+        <div
+          class="bg-purple-500/5 rounded-2xl p-6 border border-purple-500/10"
+        >
+          <h4
+            class="text-purple-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
+              ></path>
+            </svg>
+            Plantillas Divi Modulares
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Desarrollo de plantillas reutilizables en Divi para diferentes tipos
+            de páginas, manteniendo consistencia visual y facilitando la gestión
+            de contenido por parte del cliente.
+          </p>
+        </div>
+
+        <!-- Optimización UX -->
+        <div
+          class="bg-yellow-500/5 rounded-2xl p-6 border border-yellow-500/10"
+        >
+          <h4
+            class="text-yellow-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Optimización de Experiencia
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Implementación de filtros de búsqueda, optimización de carga de
+            imágenes, integración de mapas interactivos y formularios de
+            contacto especializados para el sector turístico.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fases del Proyecto -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Fases de Desarrollo</h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              1
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Análisis de Diseños y Planificación
+              </h5>
+              <p class="text-gray-300 text-sm">
+                Estudio detallado de los mockups proporcionados por los
+                diseñadores, definición de estructura de contenido y
+                planificación técnica del desarrollo.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              2
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Configuración y Estructura Base
+              </h5>
+              <p class="text-gray-300 text-sm">
+                Instalación y configuración de WordPress, Divi y ACF. Creación
+                de Custom Post Types y taxonomías para contenido turístico.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              3
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Desarrollo de Plantillas y Bloques
+              </h5>
+              <p class="text-gray-300 text-sm">
+                Creación de plantillas Divi personalizadas y desarrollo de
+                bloques de Gutenberg especializados con ACF para funcionalidades
+                específicas.
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm"
+            >
+              4
+            </div>
+            <div>
+              <h5 class="text-white font-semibold mb-2">
+                Optimización y Testing
+              </h5>
+              <p class="text-gray-300 text-sm">
+                Optimización de rendimiento, testing de funcionalidades, ajustes
+                responsive y entrega final con documentación para el cliente.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas del Proyecto -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Métricas del Proyecto</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">8+</div>
+          <div class="text-gray-400 text-sm">Plantillas Divi</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">6</div>
+          <div class="text-gray-400 text-sm">Bloques ACF</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">4</div>
+          <div class="text-gray-400 text-sm">Custom Post Types</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">90+</div>
+          <div class="text-gray-400 text-sm">PageSpeed Score</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusión -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Resultados y Aprendizajes
+      </h3>
+      <div
+        class="bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl p-6 border border-green-500/20"
+      >
+        <p class="text-gray-300 leading-relaxed mb-4">
+          El rediseño de Serendipity Adventure resultó en una plataforma web
+          moderna y funcional que refleja perfectamente la naturaleza aventurera
+          de la empresa. La combinación de Divi Builder con desarrollo
+          personalizado permitió lograr los diseños deseados sin sacrificar
+          funcionalidad.
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          Este proyecto demostró la importancia de la planificación en proyectos
+          complejos y la efectividad de combinar herramientas visuales como Divi
+          con desarrollo técnico especializado para crear soluciones a medida en
+          el sector turístico.
+        </p>
+      </div>
+    </div>
+  </div>
+</ProjectLayout>

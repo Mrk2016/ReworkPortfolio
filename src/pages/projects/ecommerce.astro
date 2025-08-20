@@ -1,0 +1,344 @@
+---
+// src/pages/projects/wordpress-plugin-ufidelitas.astro
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import PhpIcon from "../../components/icons/PhpIcon.astro";
+import WordpressIcon from "../../components/icons/WordpressIcon.astro";
+import WooIcon from "../../components/icons/WooIcon.astro";
+import BootstrapIcon from "../../components/icons/BootstrapIcon.astro";
+
+const projectData = {
+  title: "Universidad Fidélitas",
+  description:
+    "Plugin completo de WordPress/WooCommerce para la integración y automatización de productos académicos de la Universidad Fidélitas. Desarrollado en PHP, sincroniza automáticamente inventario, precios y disponibilidad de programas de bachillerato, licenciatura, posgrados, técnicos, cursos libres y certificaciones directamente desde el sistema académico institucional.",
+  image: "/images/projects/ecommerce/fide.png",
+  category: "E-commerce",
+  status: "Completado",
+  duration: "4 meses",
+  demoUrl: "https://ufidelitas.ac.cr/",
+  githubUrl: "#",
+  features: [
+    "Sincronización completa de catálogo académico por líneas de negocio",
+    "Actualización automática de inventario y disponibilidad",
+    "Gestión dinámica de precios desde sistema académico",
+    "Sistema de descuentos configurables y promociones",
+    "Seguimiento completo de transacciones e-commerce",
+    "Configuración de monedas de pago permitidas",
+    "Cron jobs programados para automatización",
+    "Notificaciones por email de productos sin inventario",
+    "Alertas automáticas de errores de transacción",
+    "Panel de configuración integrado en WordPress",
+    "Logs detallados de sincronización y errores",
+    "Compatibilidad completa con WooCommerce",
+  ],
+  challenges: [
+    "Sincronizar datos complejos entre sistemas heterogéneos",
+    "Manejar grandes volúmenes de productos académicos",
+    "Garantizar la integridad de datos en tiempo real",
+    "Implementar sistema de recuperación ante fallos",
+    "Optimizar rendimiento de sincronizaciones masivas",
+  ],
+  solutions: [
+    "API REST robusto con manejo de excepciones y reintentos",
+    "Sistema de caché inteligente para optimizar consultas",
+    "Queue system para procesar sincronizaciones por lotes",
+    "Logs detallados y sistema de monitoring integrado",
+    "Algoritmos de optimización para reducir tiempo de procesamiento",
+  ],
+  gallery: [
+    "/images/projects/ecommerce/ecom1.png",
+    "/images/projects/ecommerce/ecom2.png",
+    "/images/projects/ecommerce/ecom3.png",
+    "/images/projects/ecommerce/ecom4.png",
+    "/images/projects/ecommerce/ecom5.png",
+  ],
+};
+---
+
+<ProjectLayout {...projectData}>
+  <!-- PHP -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <PhpIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">PHP</h3>
+    <p class="text-gray-400 text-sm">
+      Lenguaje de programación para el backend
+    </p>
+  </div>
+
+  <!-- WordPress -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <WordpressIcon class="w-8 h-8" fill="#fff" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">WordPress</h3>
+    <p class="text-gray-400 text-sm">CMS y framework para plugins</p>
+  </div>
+
+  <!-- WooCommerce -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <WooIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">WooCommerce</h3>
+    <p class="text-gray-400 text-sm">Plugin de e-commerce para WordPress</p>
+  </div>
+
+  <!-- MySQL -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <BootstrapIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">Bootstrap</h3>
+    <p class="text-gray-400 text-sm">
+      Framework para la creación de sitios web
+    </p>
+  </div>
+
+  <!-- Contenido específico del proyecto (slot principal) -->
+  <div class="space-y-8">
+    <!-- Descripción del Proyecto -->
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-4">Sobre el Proyecto</h2>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        Este plugin fue desarrollado como una solución integral para automatizar
+        la gestión del catálogo académico de la Universidad Fidélitas en su
+        plataforma e-commerce. El sistema elimina la necesidad de gestión manual
+        de productos académicos, creando una sincronización en tiempo real entre
+        el sistema académico y la tienda online.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        La aplicación fue construida pensando en la automatización completa y la
+        confiabilidad, implementando las mejores prácticas de desarrollo de
+        plugins de WordPress y asegurando que cada sincronización sea precisa y
+        segura.
+      </p>
+    </div>
+
+    <!-- Arquitectura -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Arquitectura del Sistema
+      </h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Backend (Plugin WordPress)
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• PHP 8+ con arquitectura orientada a objetos</li>
+              <li>• API REST personalizada para WooCommerce</li>
+              <li>• Sistema de hooks y filtros de WordPress</li>
+              <li>• Cron jobs programados para automatización</li>
+              <li>• Integración nativa con WooCommerce APIs</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Integración Externa
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Consumo completo del API REST E-commerce universitario</li>
+              <li>• Autenticación segura con tokens JWT</li>
+              <li>• Manejo de respuestas y errores de API</li>
+              <li>• Sistema de logs para debugging</li>
+              <li>• Validación de datos de entrada</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funcionalidades Clave -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Funcionalidades Destacadas
+      </h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Sincronización Automática -->
+        <div class="bg-green-500/5 rounded-2xl p-6 border border-green-500/10">
+          <h4 class="text-green-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path>
+            </svg>
+            Sincronización Automática de Productos
+          </h4>
+          <p class="text-gray-300 text-sm">
+            CRUD completo de productos académicos con categorías por línea de
+            negocio, actualización de precios, disponibilidad y gestión de
+            inventario en tiempo real desde el sistema académico.
+          </p>
+        </div>
+
+        <!-- Sistema Multi-moneda -->
+        <div class="bg-blue-500/5 rounded-2xl p-6 border border-blue-500/10">
+          <h4 class="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            Sistema de Pagos Multi-moneda
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Configuración dinámica de monedas permitidas según las políticas
+            institucionales, con actualización automática de tipos de cambio y
+            validación de transacciones.
+          </p>
+        </div>
+
+        <!-- Panel Admin -->
+        <div
+          class="bg-purple-500/5 rounded-2xl p-6 border border-purple-500/10"
+        >
+          <h4
+            class="text-purple-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+              ></path>
+            </svg>
+            Panel de Administración Avanzado
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Dashboard integrado en WordPress con métricas de sincronización,
+            gestión de configuraciones, logs de transacciones y reportes de
+            errores en tiempo real.
+          </p>
+        </div>
+
+        <!-- Automatización -->
+        <div
+          class="bg-yellow-500/5 rounded-2xl p-6 border border-yellow-500/10"
+        >
+          <h4
+            class="text-yellow-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
+              ></path>
+            </svg>
+            Automatización Inteligente
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Sistema de cron jobs programados para sincronización automática,
+            notificaciones por email de inventario bajo y alertas de errores de
+            transacción.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas del Proyecto -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Métricas del Proyecto</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">12+</div>
+          <div class="text-gray-400 text-sm">Endpoints API</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">500+</div>
+          <div class="text-gray-400 text-sm">Productos Sincronizados</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">&lt;2min</div>
+          <div class="text-gray-400 text-sm">Tiempo Sincronización</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">99.9%</div>
+          <div class="text-gray-400 text-sm">Uptime del Sistema</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusión -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Resultados y Aprendizajes
+      </h3>
+      <div
+        class="bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl p-6 border border-green-500/20"
+      >
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Este proyecto me permitió profundizar en el desarrollo de plugins
+          empresariales para WordPress, desde la integración compleja de APIs
+          hasta la implementación de sistemas de automatización robustos y
+          escalables.
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          El resultado es un plugin de nivel empresarial que automatiza
+          completamente la gestión del catálogo académico, eliminando errores
+          manuales y garantizando la sincronización en tiempo real entre
+          sistemas críticos de la universidad.
+        </p>
+      </div>
+    </div>
+  </div>
+</ProjectLayout>
