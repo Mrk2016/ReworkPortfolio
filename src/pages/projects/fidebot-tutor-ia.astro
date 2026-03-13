@@ -1,0 +1,337 @@
+---
+// src/pages/projects/stackia.astro
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import PhpIcon from "../../components/icons/PhpIcon.astro";
+import MoodleIcon from "../../components/icons/MoodleIcon.astro";
+import OllamaIcon from "../../components/icons/OllamaIcon.astro";
+
+const projectData = {
+  title: "FideBot Tutor IA",
+  description:
+    "Plugin de actividad para Moodle 5.0 que integra modelos locales de inteligencia artificial mediante Ollama. Permite a los docentes configurar conexiones por token, seleccionar el modelo de IA y restringir los temas del chat según el contexto del curso. Los estudiantes interactúan con un asistente conversacional personalizado que resuelve dudas directamente desde la plataforma académica.",
+  image: "/images/projects/tutor-ia/tutor.png",
+  category: "Stack IA",
+  status: "Completado",
+  duration: "2 semanas",
+  demoUrl: "#",
+  githubUrl: "#",
+  features: [
+    "Chat de IA integrado como actividad nativa de Moodle",
+    "Configuración de conexión a Ollama por token de autenticación",
+    "Selección del modelo de IA por instancia de actividad",
+    "Restricción de temas del chat definida por el docente",
+    "Soporte para modelos Qwen3 con modos think/no_think",
+    "Vista de reporte para docentes con historial de interacciones",
+    "Control de temperatura del modelo por actividad",
+    "Logging de debug para diagnóstico de conexiones",
+    "Interfaz de chat responsiva integrada al tema de Moodle",
+    "Compatible con Moodle 5.0+",
+  ],
+  challenges: [
+    "Integrar una API externa (Ollama) dentro del ecosistema cerrado de Moodle",
+    "Gestionar el contexto del curso en cada solicitud al modelo de IA",
+    "Implementar la restricción de temas sin comprometer la experiencia del chat",
+    "Soportar múltiples modelos con comportamientos distintos (Qwen3 think/no_think)",
+    "Diseñar una interfaz de configuración intuitiva para docentes no técnicos",
+  ],
+  solutions: [
+    "Clase de conexión HTTP propia con manejo de tokens y reintentos",
+    "System prompt dinámico que inyecta contexto del curso y restricciones de tema",
+    "Validación y sanitización del input del estudiante antes de enviar al modelo",
+    "Detección automática del modelo para aplicar parámetros específicos de Qwen3",
+    "Formulario de configuración con validación en tiempo real y mensajes de ayuda",
+  ],
+  gallery: [
+    "/images/projects/tutor-ia/tutor1.png",
+    "/images/projects/tutor-ia/tutor2.png",
+    "/images/projects/tutor-ia/tutor3.png",
+  ],
+};
+---
+
+<ProjectLayout {...projectData}>
+  <!-- Ollama -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <OllamaIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">Ollama</h3>
+    <p class="text-gray-400 text-sm">
+      Motor de ejecución de modelos locales de IA
+    </p>
+  </div>
+
+  <!-- PHP -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <PhpIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">PHP</h3>
+    <p class="text-gray-400 text-sm">
+      Lenguaje base para el desarrollo de plugins en Moodle
+    </p>
+  </div>
+
+  <!-- Moodle -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <!-- Ícono de Moodle como fallback con letra M -->
+      <MoodleIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">Moodle 5.0</h3>
+    <p class="text-gray-400 text-sm">
+      Plataforma LMS para la actividad de plugin
+    </p>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="space-y-8">
+    <!-- Sobre el Proyecto -->
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-4">Sobre el Proyecto</h2>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        FideBot Tutor IA nació como respuesta a la necesidad de integrar
+        inteligencia artificial directamente en el flujo de aprendizaje de los
+        estudiantes de la Universidad Fidélitas, sin depender de servicios
+        externos en la nube. Usando Ollama como motor de inferencia local, el
+        plugin permite que cada actividad del curso tenga su propio asistente
+        conversacional, configurado y contextualizado por el docente.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        Al ser un módulo de actividad nativo de Moodle, FideBot se integra
+        completamente con el ecosistema de la plataforma: respeta permisos de
+        roles, se muestra en el flujo del curso como cualquier otra actividad y
+        guarda registros de interacción accesibles para el docente.
+      </p>
+    </div>
+
+    <!-- Arquitectura -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Arquitectura del Plugin</h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Plugin Moodle (mod_fidebot)
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Módulo de actividad siguiendo estándares Moodle</li>
+              <li>• PHP 8+ con arquitectura orientada a objetos</li>
+              <li>• Formulario de configuración con moodleforms</li>
+              <li>• Renderer personalizado para la vista del chat</li>
+              <li>• DB upgrade path con versionado de esquema</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Integración con Ollama
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Conexión HTTP directa a la API REST de Ollama</li>
+              <li>• Autenticación por token configurable</li>
+              <li>• System prompt dinámico con contexto del curso</li>
+              <li>• Soporte de parámetros extendidos (temperatura, modelo)</li>
+              <li>• Logging de debug para diagnóstico de errores</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funcionalidades Destacadas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Funcionalidades Destacadas
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Chat IA por actividad -->
+        <div class="bg-green-500/5 rounded-2xl p-6 border border-green-500/10">
+          <h4 class="text-green-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+              ></path>
+            </svg>
+            Chat con IA por Actividad
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Cada instancia de la actividad tiene su propio chat independiente.
+            El docente puede crear múltiples FideBots en un mismo curso, cada
+            uno orientado a un tema o unidad distinta del programa.
+          </p>
+        </div>
+
+        <!-- Configuración Ollama -->
+        <div
+          class="bg-purple-500/5 rounded-2xl p-6 border border-purple-500/10"
+        >
+          <h4
+            class="text-purple-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            Configuración de Token Ollama
+          </h4>
+          <p class="text-gray-300 text-sm">
+            El docente configura la URL del servidor Ollama y el token de
+            autenticación directamente desde el formulario de la actividad, sin
+            necesidad de acceso al servidor o configuración a nivel de
+            administración global.
+          </p>
+        </div>
+
+        <!-- Restricción de temas -->
+        <div class="bg-blue-500/5 rounded-2xl p-6 border border-blue-500/10">
+          <h4 class="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              ></path>
+            </svg>
+            Restricción de Temas
+          </h4>
+          <p class="text-gray-300 text-sm">
+            El docente define los temas permitidos en el campo de configuración
+            de la actividad. Este contexto se inyecta automáticamente en el
+            system prompt, limitando al bot a responder únicamente dentro del
+            alcance definido para el curso.
+          </p>
+        </div>
+
+        <!-- Soporte Qwen3 -->
+        <div
+          class="bg-yellow-500/5 rounded-2xl p-6 border border-yellow-500/10"
+        >
+          <h4
+            class="text-yellow-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+              ></path>
+            </svg>
+            Soporte Qwen3 (think/no_think)
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Compatibilidad nativa con los modelos Qwen3, permitiendo activar o
+            desactivar el modo de razonamiento extendido (<code
+              class="text-yellow-300 bg-yellow-500/10 px-1 rounded">/think</code
+            > /
+            <code class="text-yellow-300 bg-yellow-500/10 px-1 rounded"
+              >/no_think</code
+            >) según el tipo de consulta y la capacidad del servidor.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Métricas del Proyecto</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">5.0</div>
+          <div class="text-gray-400 text-sm">Versión Moodle</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">2 sem</div>
+          <div class="text-gray-400 text-sm">Tiempo de Desarrollo</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">100%</div>
+          <div class="text-gray-400 text-sm">IA Local / Sin nube</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">N+</div>
+          <div class="text-gray-400 text-sm">Modelos Compatibles</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusión -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Resultados y Aprendizajes
+      </h3>
+      <div
+        class="bg-gradient-to-r from-purple-500/10 to-green-500/10 rounded-2xl p-6 border border-purple-500/20"
+      >
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Este proyecto me permitió explorar a fondo la arquitectura interna de
+          los módulos de actividad de Moodle, desde el ciclo de vida del plugin
+          hasta la implementación de renderers, formularios y vistas de reporte
+          para docentes.
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          El resultado es un plugin funcional que demuestra cómo integrar
+          modelos de IA locales en entornos académicos controlados, sin
+          dependencia de servicios externos, manteniendo la privacidad de los
+          datos y la autonomía institucional.
+        </p>
+      </div>
+    </div>
+  </div>
+</ProjectLayout>
