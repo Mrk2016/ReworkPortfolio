@@ -198,14 +198,18 @@ const {
             </div>
           </div>
 
-          <!-- Project Image -->
+          <!-- Project Hero: slot or fallback image -->
           <div class="glass rounded-3xl overflow-hidden border border-white/10">
-            <img
-              src={image}
-              alt={title}
-              class="w-full h-96 object-cover"
-              onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjM4NCIgdmlld0JveD0iMCAwIDUwMCAzODQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzg0IiBmaWxsPSIjMUYyOTM3Ii8+CjxwYXRoIGQ9Ik0yNDUgMTYwTDI2MCAyMDEuNUwyNDUgMjQzTDIzMCAyMDEuNUwyNDUgMTYwWiIgZmlsbD0iIzM0Qzc1OSIvPgo8dGV4dCB4PSIyNTAiIHk9IjI2MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNBNEE0QTciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkltYWdlbiBkZWwgcHJveWVjdG88L3RleHQ+Cjwvc3ZnPg=='"
-            />
+            {Astro.slots.has('hero') ? (
+              <slot name="hero" />
+            ) : (
+              <img
+                src={image}
+                alt={title}
+                class="w-full h-96 object-cover"
+                onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjM4NCIgdmlld0JveD0iMCAwIDUwMCAzODQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMzg0IiBmaWxsPSIjMUYyOTM3Ii8+CjxwYXRoIGQ9Ik0yNDUgMTYwTDI2MCAyMDEuNUwyNDUgMjQzTDIzMCAyMDEuNUwyNDUgMTYwWiIgZmlsbD0iIzM0Qzc1OSIvPgo8dGV4dCB4PSIyNTAiIHk9IjI2MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiNBNEE0QTciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkltYWdlbiBkZWwgcHJveWVjdG88L3RleHQ+Cjwvc3ZnPg=='"
+              />
+            )}
           </div>
         </div>
       </section>

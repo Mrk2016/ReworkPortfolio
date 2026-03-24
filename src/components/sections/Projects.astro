@@ -13,6 +13,7 @@ import AcfIcon from "../../components/icons/AcfIcon.astro";
 import DiviIcon from "../../components/icons/DiviIcon.astro";
 import MysqlIcon from "../../components/icons/MysqlIcon.astro";
 import GithubIcon from "../../components/icons/GithubIcon.astro";
+import JavascriptIcon from "../../components/icons/JavascriptIcon.astro";
 import RedisIcon from "../../components/icons/RedisIcon.astro";
 import TypescriptIcon from "../../components/icons/TypescriptIcon.astro";
 import ExpressIcon from "../../components/icons/ExpressIcon.astro";
@@ -30,8 +31,13 @@ const projects = [
         primaryCategory: "E-commerce",
         status: "Completado",
         duration: "5 meses",
-        image: "/images/projects/ecommerce/fide.png",
         featured: true,
+        placeholderBg: "linear-gradient(135deg, #0a0f1a 0%, #0d1220 50%, #080d18 100%)",
+        placeholderGlow: "rgba(100, 116, 139, 0.12)",
+        placeholderTechs: [
+            { name: "WordPress", component: WordpressIcon },
+            { name: "WooCommerce", component: WooIcon },
+        ],
         technologies: [
             { name: "WordPress", component: WordpressIcon },
             { name: "Woo", component: WooIcon },
@@ -46,10 +52,15 @@ const projects = [
         description: "Rediseño de un sitio web para empresa de viajes turísticos, con una interfaz de usuario moderna y una experiencia de usuario atractiva.",
         categories: ["Web"],
         primaryCategory: "Web",
-        status: "Completado", 
+        status: "Completado",
         duration: "2 meses",
-        image: "/images/projects/serendipity/serendipity.png",
         featured: false,
+        placeholderBg: "linear-gradient(135deg, #001a14 0%, #001f18 50%, #00120e 100%)",
+        placeholderGlow: "rgba(6, 182, 212, 0.12)",
+        placeholderTechs: [
+            { name: "WordPress", component: WordpressIcon },
+            { name: "Divi", component: DiviIcon },
+        ],
         technologies: [
             { name: "WordPress", component: WordpressIcon },
             { name: "ACF", component: AcfIcon },
@@ -65,9 +76,14 @@ const projects = [
         categories: ["Web", "Plugins"],
         primaryCategory: "Plugins",
         status: "Completado",
-        duration: "3 semanas", 
-        image: "/images/projects/qrfide/qrfide.png",
+        duration: "3 semanas",
         featured: true,
+        placeholderBg: "linear-gradient(135deg, #00081a 0%, #000d1f 50%, #00061a 100%)",
+        placeholderGlow: "rgba(59, 130, 246, 0.12)",
+        placeholderTechs: [
+            { name: "WordPress", component: WordpressIcon },
+            { name: "PHP", component: JavascriptIcon },
+        ],
         technologies: [
             { name: "wordpress", component: WordpressIcon },
             { name: "Mysql", component: MysqlIcon },
@@ -84,8 +100,13 @@ const projects = [
         primaryCategory: "Stack IA",
         status: "Completado",
         duration: "2 semanas",
-        image: "/images/projects/tutor-ia/tutor.png",
         featured: true,
+        placeholderBg: "linear-gradient(135deg, #0f0018 0%, #130020 50%, #0a0015 100%)",
+        placeholderGlow: "rgba(168, 85, 247, 0.12)",
+        placeholderTechs: [
+            { name: "Ollama", component: OllamaIcon },
+            { name: "Moodle", component: MoodleIcon },
+        ],
         technologies: [
             { name: "Ollama", component: OllamaIcon },
             { name: "PHP", component: PhpIcon },
@@ -149,14 +170,30 @@ const projects = [
                 
                 <!-- Project Header -->
                 <div class="relative overflow-hidden">
-                    <!-- Project Image -->
-                    <div class="w-full h-64 relative overflow-hidden">
-                        <img 
-                            src={project.image || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDgwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjMGYxNzJhIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjEwMCIgcj0iMzIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIyYzU1ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0zODQgMTAwIEw0MDAgODQgTDQxNiAxMDAgTDQwMCAxMTYgWiIgZmlsbD0iIzIyYzU1ZSIgb3BhY2l0eT0iMC42Ii8+CjxwYXRoIGQ9Ik0zNjAgMTI0IEwzNzYgMTI0IiBzdHJva2U9IiMyMmM1NWUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik00MjQgMTI0IEw0NDAgMTI0IiBzdHJva2U9IiMyMmM1NWUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxwYXRoIGQ9Ik0zNzYgODggTDM2NCA3NiIgc3Ryb2tlPSIjMjJjNTVlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDI0IDg4IEw0MzYgNzYiIHN0cm9rZT0iIzIyYzU1ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHRleHQgeD0iNDAwIiB5PSIxNjAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjRiYTk2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GaWRlQm90IFR1dG9yIElBPC90ZXh0Pgo8dGV4dCB4PSI0MDAiIHk9IjE4MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTEiIGZpbGw9IiM0YjU1NjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk1vb2RsZSA1LjAgKyBPbGxhbWE8L3RleHQ+Cjwvc3ZnPg=='} 
-                            alt={project.title}
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjMUYyOTM3Ii8+CjxwYXRoIGQ9Ik0xOTUuNSAxMDBMMjA1IDEwOS41TDE5NS41IDExOUwxODYgMTA5LjVMMTk1LjUgMTAwWiIgZmlsbD0iIzM0Qzc1OSIvPgo8dGV4dCB4PSIyMDAiIHk9IjE0MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNBNEE0QTciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkltYWdlbiBubyBkaXNwb25pYmxlPC90ZXh0Pgo8L3N2Zz4='"
-                        />
+                    <!-- Project Tech Placeholder -->
+                    <div class="w-full h-64 relative overflow-hidden flex items-center justify-center"
+                         style={`background: ${project.placeholderBg}`}>
+                        <!-- Decorative dots pattern -->
+                        <div class="absolute inset-0 tech-dots-pattern opacity-20"></div>
+                        <!-- Accent glow -->
+                        <div class="absolute inset-0" style={`background: radial-gradient(ellipse at center, ${project.placeholderGlow} 0%, transparent 70%)`}></div>
+                        <!-- Tech icons -->
+                        <div class="relative z-10 flex gap-6 justify-center items-center px-8">
+                            {project.placeholderTechs.map((tech, i) => (
+                                <>
+                                    <div class="flex flex-col items-center gap-3 group/icon">
+                                        <div class="w-20 h-20 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm transition-transform duration-300 group-hover/icon:scale-110 tech-icon-card"
+                                             style={`background: rgba(255,255,255,0.04)`}>
+                                            <tech.component class="w-11 h-11" />
+                                        </div>
+                                        <span class="text-sm text-gray-300 font-medium">{tech.name}</span>
+                                    </div>
+                                    {i < project.placeholderTechs.length - 1 && (
+                                        <span class="text-2xl font-light text-gray-500 mb-6 select-none">+</span>
+                                    )}
+                                </>
+                            ))}
+                        </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                         
                         <!-- Status Badge -->
@@ -339,6 +376,16 @@ const projects = [
 </script>
 
 <style>
+    /* Tech Placeholder */
+    .tech-dots-pattern {
+        background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    .tech-icon-card {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
     /* Animaciones de entrada */
     .project-card {
         opacity: 0;

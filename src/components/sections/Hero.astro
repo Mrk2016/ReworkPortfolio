@@ -171,9 +171,9 @@
     </div>
   </div>
 
-  <!-- Scroll Indicator - Ajustado para móvil -->
+  <!-- Scroll Indicator -->
   <div
-    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce md:bottom-8"
+    class="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-40"
     id="scroll-indicator-container"
   >
     <div class="text-sm text-gray-400 mb-2 font-medium hidden md:block">
@@ -341,8 +341,8 @@
       text-align: center;
       gap: 3rem;
       padding-top: 2rem;
-      padding-bottom: 6rem; /* Aumentado para dar espacio al scroll indicator */
-      min-height: 100vh; /* Asegurar altura completa */
+      padding-bottom: 2rem;
+      min-height: 100dvh;
     }
 
     section h1 {
@@ -357,7 +357,7 @@
     .glass {
       margin-left: 0;
       max-width: 100%;
-      margin-bottom: 2rem; /* Espacio adicional bajo el código */
+      margin-bottom: 2rem;
     }
 
     .flex.gap-8 {
@@ -369,34 +369,10 @@
       justify-content: center;
     }
 
-    /* Ajustes específicos del scroll indicator en móvil */
-    #scroll-indicator-container {
-      bottom: 1rem !important; /* Posición fija en móvil */
-      z-index: 10;
-      /* Asegurar que esté bien posicionado */
-    }
-
-    /* Ocultar elementos decorativos en móvil para simplicidad */
+    /* Ocultar texto y flecha en móvil, solo mostrar el círculo */
     #scroll-indicator-container .text-sm,
-    #scroll-indicator-container svg {
+    #scroll-indicator-container > svg {
       display: none;
-    }
-
-    /* Solo mostrar el indicador circular en móvil */
-    #scroll-indicator-container {
-      flex-direction: row;
-      gap: 0;
-    }
-  }
-
-  /* Ajustes adicionales para pantallas muy pequeñas */
-  @media (max-width: 640px) {
-    section {
-      padding-bottom: 5rem;
-    }
-
-    #scroll-indicator-container {
-      bottom: 0.5rem !important;
     }
   }
 </style>

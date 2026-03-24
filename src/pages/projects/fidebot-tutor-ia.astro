@@ -13,7 +13,7 @@ const projectData = {
   category: "Stack IA",
   status: "Completado",
   duration: "2 semanas",
-  demoUrl: "#",
+  demoUrl: undefined,
   githubUrl: "#",
   features: [
     "Chat de IA integrado como actividad nativa de Moodle",
@@ -50,6 +50,33 @@ const projectData = {
 ---
 
 <ProjectLayout {...projectData}>
+  <!-- Hero placeholder con iconos -->
+  <div slot="hero"
+    class="w-full h-96 relative flex items-center justify-center overflow-hidden"
+    style="background: linear-gradient(135deg, #0f0018 0%, #130020 50%, #0a0015 100%)">
+    <div class="absolute inset-0 opacity-20"
+      style="background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <div class="absolute inset-0"
+      style="background: radial-gradient(ellipse at center, rgba(168,85,247,0.12) 0%, transparent 70%)"></div>
+    <div class="relative z-10 flex gap-10 justify-center items-center">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
+          style="background: rgba(255,255,255,0.04); box-shadow: 0 4px 16px rgba(0,0,0,0.4)">
+          <OllamaIcon class="w-14 h-14" />
+        </div>
+        <span class="text-sm text-gray-300 font-medium">Ollama</span>
+      </div>
+      <span class="text-3xl font-light text-gray-500 mb-8 select-none">+</span>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
+          style="background: rgba(255,255,255,0.04); box-shadow: 0 4px 16px rgba(0,0,0,0.4)">
+          <MoodleIcon class="w-14 h-14" />
+        </div>
+        <span class="text-sm text-gray-300 font-medium">Moodle</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Ollama -->
   <div
     slot="technologies"
