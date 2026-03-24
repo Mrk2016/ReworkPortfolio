@@ -14,7 +14,7 @@ const projectData = {
   category: "E-commerce",
   status: "Completado",
   duration: "4 meses",
-  demoUrl: "https://ufidelitas.ac.cr/",
+  demoUrl: undefined,
   githubUrl: "#",
   features: [
     "Sincronización completa de catálogo académico por líneas de negocio",
@@ -55,6 +55,36 @@ const projectData = {
 ---
 
 <ProjectLayout {...projectData}>
+  <!-- Hero placeholder con iconos -->
+  <div slot="hero"
+    class="w-full h-96 relative flex items-center justify-center overflow-hidden"
+    style="background: linear-gradient(135deg, #0a0f1a 0%, #0d1220 50%, #080d18 100%)">
+    <!-- Dots pattern -->
+    <div class="absolute inset-0 opacity-20"
+      style="background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 24px 24px;"></div>
+    <!-- Glow -->
+    <div class="absolute inset-0"
+      style="background: radial-gradient(ellipse at center, rgba(100,116,139,0.15) 0%, transparent 70%)"></div>
+    <!-- Icons -->
+    <div class="relative z-10 flex gap-10 justify-center items-center">
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
+          style="background: rgba(255,255,255,0.04); box-shadow: 0 4px 16px rgba(0,0,0,0.4)">
+          <WordpressIcon class="w-14 h-14" />
+        </div>
+        <span class="text-sm text-gray-300 font-medium">WordPress</span>
+      </div>
+      <span class="text-3xl font-light text-gray-500 mb-8 select-none">+</span>
+      <div class="flex flex-col items-center gap-3">
+        <div class="w-24 h-24 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
+          style="background: rgba(255,255,255,0.04); box-shadow: 0 4px 16px rgba(0,0,0,0.4)">
+          <WooIcon class="w-14 h-14" />
+        </div>
+        <span class="text-sm text-gray-300 font-medium">WooCommerce</span>
+      </div>
+    </div>
+  </div>
+
   <!-- PHP -->
   <div
     slot="technologies"

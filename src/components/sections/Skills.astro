@@ -166,6 +166,95 @@ const icons: Record<IconType, string> = {
     ))}
   </div>
 
+  <!-- LLM Stack Section -->
+  <div class="mt-8 group glass rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 skill-card llm-card"
+       style="animation-delay: 0.8s">
+    <!-- Header -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-1">Stack IA & LLMs</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Integración de modelos de lenguaje locales, pipelines RAG y automatización con IA</p>
+      </div>
+      <div class="ml-auto hidden sm:flex items-center gap-2 text-purple-400">
+        <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+        <span class="text-sm font-medium">En evolución</span>
+      </div>
+    </div>
+
+    <!-- Highlight RAG badge -->
+    <div class="mb-6">
+      <span class="inline-flex items-center gap-2 bg-purple-500/10 text-purple-300 border border-purple-500/20 px-4 py-2 rounded-full text-sm font-medium">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+        </svg>
+        Retrieval-Augmented Generation (RAG)
+      </span>
+    </div>
+
+    <!-- Tools grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Qdrant -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">Qdrant</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Base de datos vectorial para almacenamiento y búsqueda semántica en pipelines RAG</p>
+      </div>
+
+      <!-- Ollama -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">Ollama</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Ejecución local de LLMs (Qwen, Llama, Mistral) con integración vía API REST</p>
+      </div>
+
+      <!-- N8N -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">N8N</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Automatización de flujos de trabajo con nodos de IA, webhooks y conectores de servicios</p>
+      </div>
+
+      <!-- Open WebUI -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.13 8.13 0 01-2.939-.515l-5.637 1.406c-.365.092-.657-.215-.565-.565l1.406-5.637A8.13 8.13 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">Open WebUI</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Interfaz web para gestión y uso de modelos locales con soporte de conocimiento personalizado</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-6 pt-6 border-t border-purple-500/10">
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-gray-400">4 herramientas</span>
+        <div class="sm:hidden flex items-center gap-2 text-purple-400">
+          <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+          <span class="font-medium">En evolución</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <style>
@@ -206,6 +295,14 @@ const icons: Record<IconType, string> = {
   html.light .skill-card {
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  html.light .llm-card {
+    border-color: rgba(168, 85, 247, 0.2) !important;
+  }
+
+  html.light .llm-card:hover {
+    border-color: rgba(168, 85, 247, 0.4) !important;
   }
   
   html.light .text-white {
