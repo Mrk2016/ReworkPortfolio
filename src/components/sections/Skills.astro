@@ -79,7 +79,7 @@ const icons: Record<IconType, string> = {
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
   </svg>`,
   "shopping-cart": `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13h10M17 13v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6"></path>
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
   </svg>`,
   database: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
@@ -196,20 +196,9 @@ const icons: Record<IconType, string> = {
       </span>
     </div>
 
-    <!-- Tools grid -->
+    <!-- Tools grid — orden lógico del stack LLM -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Qdrant -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Qdrant</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Base de datos vectorial para almacenamiento y búsqueda semántica en pipelines RAG</p>
-      </div>
-
-      <!-- Ollama -->
+      <!-- 1. Ollama — modelo base local -->
       <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
         <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
           <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,7 +209,63 @@ const icons: Record<IconType, string> = {
         <p class="text-gray-400 text-xs leading-relaxed">Ejecución local de LLMs (Qwen, Llama, Mistral) con integración vía API REST</p>
       </div>
 
-      <!-- N8N -->
+      <!-- 2. Prompt Engineering — comunicación con el modelo -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">Prompt Engineering</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Diseño de prompts de sistema, instrucciones estructuradas y técnicas como few-shot y chain-of-thought</p>
+      </div>
+
+      <!-- 3. RAG — conocimiento externo -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">RAG</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Retrieval-Augmented Generation con bases de datos vectoriales como Qdrant para búsqueda semántica contextual</p>
+      </div>
+
+      <!-- 4. Pipelines — orquestación del flujo -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">Pipelines</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Diseño de flujos de procesamiento de datos e inferencia encadenada entre modelos, herramientas y fuentes de conocimiento</p>
+      </div>
+
+      <!-- 5. Creación de Tools — capacidades del agente -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">Creación de Tools</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Desarrollo de herramientas personalizadas para agentes IA, permitiendo acceso a APIs, bases de datos y servicios externos</p>
+      </div>
+
+      <!-- 6. MCP — protocolo de conexión estándar -->
+      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
+        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+          </svg>
+        </div>
+        <h4 class="text-white font-semibold mb-1">MCP</h4>
+        <p class="text-gray-400 text-xs leading-relaxed">Model Context Protocol para conectar LLMs con herramientas externas, APIs y fuentes de datos de forma estandarizada</p>
+      </div>
+
+      <!-- 7. N8N — automatización y orquestación -->
       <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
         <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
           <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,7 +276,7 @@ const icons: Record<IconType, string> = {
         <p class="text-gray-400 text-xs leading-relaxed">Automatización de flujos de trabajo con nodos de IA, webhooks y conectores de servicios</p>
       </div>
 
-      <!-- Open WebUI -->
+      <!-- 8. Open WebUI — interfaz de interacción -->
       <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
         <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
           <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -246,7 +291,7 @@ const icons: Record<IconType, string> = {
     <!-- Footer -->
     <div class="mt-6 pt-6 border-t border-purple-500/10">
       <div class="flex items-center justify-between text-sm">
-        <span class="text-gray-400">4 herramientas</span>
+        <span class="text-gray-400">8 herramientas</span>
         <div class="sm:hidden flex items-center gap-2 text-purple-400">
           <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
           <span class="font-medium">En evolución</span>
