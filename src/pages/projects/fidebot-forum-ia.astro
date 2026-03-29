@@ -1,0 +1,467 @@
+---
+// src/pages/projects/fideforum.astro
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import PhpIcon from "../../components/icons/PhpIcon.astro";
+import OllamaIcon from "../../components/icons/OllamaIcon.astro";
+import MoodleIcon from "../../components/icons/MoodleIcon.astro";
+
+const projectData = {
+  title: "FideForum Tutor IA",
+  description:
+    "Plugin de actividad para Moodle 5.0 que convierte el foro del curso en un asistente inteligente con IA. Los docentes cargan un documento de base de conocimiento (PDF, DOCX o XLSX) y la IA responde automáticamente las consultas de los estudiantes como reply, con contexto extraído directamente del documento institucional.",
+  image: "/images/projects/fidebot-forum/forum.png",
+  category: "Stack IA",
+  status: "Completado",
+  duration: "2 semanas",
+  demoUrl: undefined,
+  githubUrl: "#",
+  features: [
+    "Foro con respuesta automática de IA integrado como actividad nativa de Moodle",
+    "Carga de documento de contexto (PDF, DOCX, XLSX) por instancia",
+    "La IA responde como reply al post del estudiante usando el documento como base",
+    "Plantillas descargables DOCX y XLSX con estructura ideal para la IA",
+    "Secciones ignorables en documentos con prefijo _ (instrucciones excluidas del contexto)",
+    "Visibilidad configurable: foro público o privado por instancia",
+    "Modal system personalizado sin dependencia de confirm() nativo",
+    "Soporte multi-turno con parentid para hilos de conversación",
+    "Configuración de conexión a Ollama por token de autenticación",
+    "Compatible con Moodle 5.0+",
+  ],
+  challenges: [
+    "Extraer y procesar texto útil de documentos heterogéneos (PDF, DOCX, XLSX)",
+    "Separar el contenido de instrucciones del contexto real que debe consumir la IA",
+    "Integrar el flujo de respuesta automática sin bloquear la experiencia del foro",
+    "Construir un sistema de modales accesible sin usar confirm() nativo del navegador",
+    "Gestionar el almacenamiento de documentos con la API de archivos de Moodle",
+  ],
+  solutions: [
+    "Clase document_processor.php con extractores específicos por formato (PDF/DOCX/XLSX)",
+    "Convención de secciones con prefijo _ ignoradas al construir el contexto de la IA",
+    "Sistema de cola asincrónica: el post se guarda y la IA responde en el mismo request",
+    "Modal system con JavaScript vanilla integrado al renderer de Moodle",
+    "Uso de la File API de Moodle con filemanager y draft itemids para gestión segura",
+  ],
+  gallery: [
+    "/images/projects/forum-ia/forum1.png",
+    "/images/projects/forum-ia/forum2.png",
+    "/images/projects/forum-ia/forum3.png",
+  ],
+};
+---
+
+<ProjectLayout {...projectData}>
+  <!-- Hero placeholder con iconos -->
+  <div
+    slot="hero"
+    class="w-full h-96 relative flex items-center justify-center overflow-hidden"
+    style="background: linear-gradient(135deg, #0f0018 0%, #130020 50%, #0a0015 100%)"
+  >
+    <div
+      class="absolute inset-0 opacity-20"
+      style="background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 24px 24px;"
+    >
+    </div>
+    <div
+      class="absolute inset-0"
+      style="background: radial-gradient(ellipse at center, rgba(168,85,247,0.15) 0%, transparent 70%)"
+    >
+    </div>
+    <div
+      class="relative z-10 flex gap-10 justify-center items-center"
+      style="color: white"
+    >
+      <div class="flex flex-col items-center gap-3">
+        <div
+          class="w-24 h-24 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
+          style="background: rgba(255,255,255,0.04); box-shadow: 0 4px 16px rgba(0,0,0,0.4)"
+        >
+          <OllamaIcon class="w-14 h-14" />
+        </div>
+        <span class="text-sm text-gray-300 font-medium">Ollama</span>
+      </div>
+      <span class="text-3xl font-light text-gray-500 mb-8 select-none">+</span>
+      <div class="flex flex-col items-center gap-3">
+        <div
+          class="w-24 h-24 rounded-2xl flex items-center justify-center border border-white/10 backdrop-blur-sm"
+          style="background: rgba(255,255,255,0.04); box-shadow: 0 4px 16px rgba(0,0,0,0.4)"
+        >
+          <MoodleIcon class="w-14 h-14" />
+        </div>
+        <span class="text-sm text-gray-300 font-medium">Moodle</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ollama -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <OllamaIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">Ollama</h3>
+    <p class="text-gray-400 text-sm">
+      Motor de inferencia local para generación de respuestas
+    </p>
+  </div>
+
+  <!-- PHP -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <PhpIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">PHP</h3>
+    <p class="text-gray-400 text-sm">
+      Lenguaje base para el desarrollo del plugin en Moodle
+    </p>
+  </div>
+
+  <!-- Moodle -->
+  <div
+    slot="technologies"
+    class="glass rounded-2xl p-6 text-center border border-white/10 hover:border-green-500/30 transition-all duration-300 group"
+  >
+    <div
+      class="w-16 h-16 mx-auto mb-4 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300"
+    >
+      <MoodleIcon class="w-8 h-8" />
+    </div>
+    <h3 class="text-white font-semibold mb-2">Moodle 5.0</h3>
+    <p class="text-gray-400 text-sm">
+      Plataforma LMS como base del módulo de actividad
+    </p>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="space-y-8">
+    <!-- Sobre el Proyecto -->
+    <div>
+      <h2 class="text-2xl font-bold text-white mb-4">Sobre el Proyecto</h2>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        FideForum Tutor IA surgió de la necesidad de ofrecer respuestas
+        automáticas y contextualizadas a las consultas frecuentes de los
+        estudiantes dentro del propio flujo del curso en Moodle. En lugar de un
+        chat separado, el plugin se integra como un foro nativo donde la IA
+        actúa como un participante más: lee la pregunta del estudiante y publica
+        la respuesta como reply, usando el documento de base de conocimiento
+        cargado por el docente.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        El plugin reutiliza la infraestructura de conexión a Ollama desarrollada
+        en <strong class="text-white">mod_fidebot</strong>, extendiendo el
+        ecosistema de IA local de la universidad hacia el módulo de foros y
+        sumando procesamiento de documentos en múltiples formatos.
+      </p>
+    </div>
+
+    <!-- Arquitectura -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Arquitectura del Plugin</h3>
+      <div class="bg-gray-800/30 rounded-2xl p-6 border border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Plugin Moodle (mod_fideforum)
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Módulo de actividad con estándares nativos de Moodle</li>
+              <li>• PHP 8+ con arquitectura orientada a objetos</li>
+              <li>
+                • Clases: <code
+                  class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >ollama_client</code
+                >, <code class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >document_processor</code
+                >, <code class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >knowledge_base</code
+                >, <code class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >ai_responder</code
+                >
+              </li>
+              <li>• Renderer personalizado para la vista del foro</li>
+              <li>• File API de Moodle para gestión segura de documentos</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-green-400 font-semibold mb-3">
+              Pipeline de Respuesta IA
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li>• Estudiante publica pregunta en el foro</li>
+              <li>
+                • <code class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >document_processor</code
+                > extrae texto del documento
+              </li>
+              <li>
+                • <code class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >knowledge_base</code
+                > construye el contexto para Ollama
+              </li>
+              <li>
+                • <code class="text-green-300 bg-green-500/10 px-1 rounded"
+                  >ai_responder</code
+                > genera y publica el reply automático
+              </li>
+              <li>• Respuesta visible en el hilo del foro en tiempo real</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funcionalidades Destacadas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Funcionalidades Destacadas
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Foro con IA -->
+        <div class="bg-green-500/5 rounded-2xl p-6 border border-green-500/10">
+          <h4 class="text-green-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+              ></path>
+            </svg>
+            Foro con Respuesta Automática
+          </h4>
+          <p class="text-gray-300 text-sm">
+            El estudiante publica su consulta en el foro y la IA responde
+            automáticamente como reply dentro del mismo hilo, manteniendo el
+            contexto del curso y la base de conocimiento del docente como
+            referencia.
+          </p>
+        </div>
+
+        <!-- Procesador de documentos -->
+        <div class="bg-blue-500/5 rounded-2xl p-6 border border-blue-500/10">
+          <h4 class="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+            Procesador Multi-formato
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Soporte nativo para documentos <strong class="text-blue-300"
+              >PDF</strong
+            >,
+            <strong class="text-blue-300">DOCX</strong> y <strong
+              class="text-blue-300">XLSX</strong
+            >. El extractor analiza el contenido estructurado y construye
+            automáticamente el contexto que Ollama usará para generar las
+            respuestas.
+          </p>
+        </div>
+
+        <!-- Secciones ignorables -->
+        <div
+          class="bg-yellow-500/5 rounded-2xl p-6 border border-yellow-500/10"
+        >
+          <h4
+            class="text-yellow-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+              ></path>
+            </svg>
+            Secciones Ignorables con Prefijo _
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Las secciones del documento cuyo encabezado empiece con
+            <code class="text-yellow-300 bg-yellow-500/10 px-1 rounded">_</code>
+            son excluidas automáticamente del contexto. Esto permite incluir instrucciones
+            para el docente dentro del mismo documento sin que la IA las procese.
+          </p>
+        </div>
+
+        <!-- Plantillas descargables -->
+        <div
+          class="bg-purple-500/5 rounded-2xl p-6 border border-purple-500/10"
+        >
+          <h4
+            class="text-purple-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              ></path>
+            </svg>
+            Plantillas Descargables
+          </h4>
+          <p class="text-gray-300 text-sm">
+            El formulario de configuración incluye botones para descargar
+            plantillas en <strong class="text-purple-300">DOCX</strong> y <strong
+              class="text-purple-300">XLSX</strong
+            >
+            con la estructura ideal para que la IA interprete correctamente el contenido,
+            incluyendo secciones de ejemplo con pares Pregunta/Respuesta.
+          </p>
+        </div>
+
+        <!-- Modal system -->
+        <div class="bg-cyan-500/5 rounded-2xl p-6 border border-cyan-500/10">
+          <h4 class="text-cyan-400 font-semibold mb-3 flex items-center gap-2">
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Modal System Personalizado
+          </h4>
+          <p class="text-gray-300 text-sm">
+            Sistema de modales de confirmación en JavaScript vanilla que
+            reemplaza los <code
+              class="text-cyan-300 bg-cyan-500/10 px-1 rounded">confirm()</code
+            > nativos del navegador, logrando una experiencia de usuario consistente
+            con el tema de Moodle y con soporte completo de accesibilidad.
+          </p>
+        </div>
+
+        <!-- Visibilidad configurable -->
+        <div
+          class="bg-orange-500/5 rounded-2xl p-6 border border-orange-500/10"
+        >
+          <h4
+            class="text-orange-400 font-semibold mb-3 flex items-center gap-2"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              ></path>
+            </svg>
+            Visibilidad Configurable
+          </h4>
+          <p class="text-gray-300 text-sm">
+            El docente decide si el foro es <strong class="text-orange-300"
+              >público</strong
+            >
+            (todos los estudiantes ven todas las consultas y respuestas) o
+            <strong class="text-orange-300">privado</strong>
+            (cada estudiante solo ve sus propias interacciones con la IA).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Métricas -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">Métricas del Proyecto</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">N+</div>
+          <div class="text-gray-400 text-sm">Modelos compatibles</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">3</div>
+          <div class="text-gray-400 text-sm">Formatos soportados</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">100%</div>
+          <div class="text-gray-400 text-sm">IA Local / Sin nube</div>
+        </div>
+        <div
+          class="text-center p-4 bg-gray-800/30 rounded-xl border border-white/10"
+        >
+          <div class="text-2xl font-bold text-green-400 mb-1">5.0</div>
+          <div class="text-gray-400 text-sm">Versión Moodle</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conclusión -->
+    <div>
+      <h3 class="text-xl font-bold text-white mb-4">
+        Resultados y Aprendizajes
+      </h3>
+      <div
+        class="bg-gradient-to-r from-green-500/10 to-purple-500/10 rounded-2xl p-6 border border-green-500/20"
+      >
+        <p class="text-gray-300 leading-relaxed mb-4">
+          Este proyecto amplió el ecosistema de IA local de la universidad
+          integrando la inteligencia artificial directamente en el módulo de
+          foros de Moodle. Fue especialmente desafiante construir un procesador
+          de documentos robusto que manejara tres formatos distintos con
+          estructuras heterogéneas, manteniendo la calidad del contexto que
+          recibe el modelo.
+        </p>
+        <p class="text-gray-300 leading-relaxed">
+          El resultado es un plugin que democratiza el acceso a respuestas de
+          calidad dentro del campus virtual, reduciendo la carga de consultas
+          repetitivas al docente y mejorando la experiencia de los estudiantes
+          con respuestas contextualizadas e instantáneas.
+        </p>
+      </div>
+    </div>
+  </div>
+</ProjectLayout>
