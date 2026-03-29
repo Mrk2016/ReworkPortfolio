@@ -51,6 +51,13 @@ const {
     <meta property="og:image" content={image} />
     <meta property="og:type" content="website" />
 
+    <!-- Apply saved theme before render to avoid flash -->
+    <script is:inline>
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.add("light");
+      }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
