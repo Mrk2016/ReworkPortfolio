@@ -288,6 +288,48 @@ html.light .text-gradient {
   background-clip: text;
 }
 
+/* Acentos secundarios (código, badges, texto destacado en detalle de proyectos):
+   en modo oscuro estos tonos claros (-300/-400) tienen buen contraste sobre negro,
+   pero sobre fondo blanco quedan lavados/casi ilegibles. Se oscurecen en modo claro. */
+html.light .text-green-300,
+html.light .text-green-400 {
+  color: var(--color-primary-dark) !important;
+}
+
+html.light .text-blue-300,
+html.light .text-blue-400 {
+  color: #2563eb !important;
+}
+
+html.light .text-purple-300,
+html.light .text-purple-400 {
+  color: #7c3aed !important;
+}
+
+html.light .text-yellow-300,
+html.light .text-yellow-400,
+html.light .text-yellow-500 {
+  color: #a16207 !important;
+}
+
+html.light .text-orange-300,
+html.light .text-orange-400 {
+  color: #c2410c !important;
+}
+
+html.light .text-cyan-300,
+html.light .text-cyan-400 {
+  color: #0e7490 !important;
+}
+
+html.light .text-amber-400 {
+  color: #a16207 !important;
+}
+
+html.light .hover\:text-red-400:hover {
+  color: #dc2626 !important;
+}
+
 :root {
   --icon-color-dark: #e5e7eb;
   --icon-color-light: #374151;
