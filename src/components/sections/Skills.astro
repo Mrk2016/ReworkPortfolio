@@ -1,71 +1,133 @@
 ---
 
 // Definir tipos de iconos
-type IconType = 'monitor' | 'server' | 'shopping-cart' | 'database';
+type IconType = 'monitor' | 'server' | 'shopping-cart' | 'database' | 'brain';
+type AccentKey = 'green';
 
 interface Technology {
   name: string;
-  level: number;
-  color: string;
+  tier: 1 | 2 | 3 | 4; // 1: Básico, 2: Intermedio, 3: Avanzado, 4: Experto
 }
 
 interface SkillGroup {
   category: string;
   icon: IconType;
   description: string;
+  accent: AccentKey;
+  highlight: string;
   technologies: Technology[];
 }
 
+const tierLabels: Record<number, string> = {
+  1: "Básico",
+  2: "Intermedio",
+  3: "Avanzado",
+  4: "Experto",
+};
+
+interface AccentTheme {
+  iconBg: string;
+  iconText: string;
+  border: string;
+  hoverBorder: string;
+  dot: string;
+  techText: string;
+  chipBg: string;
+  chipBorder: string;
+  chipHoverBg: string;
+}
+
+// Un único acento (verde de marca) para todas las categorías: la diferenciación
+// entre tarjetas queda en el ícono, el título y la descripción, no en el color.
+const accentThemes: Record<AccentKey, AccentTheme> = {
+  green: {
+    iconBg: "from-green-500/20 to-green-600/20",
+    iconText: "text-green-500",
+    border: "border-white/10",
+    hoverBorder: "hover:border-green-500/30",
+    dot: "bg-green-500",
+    techText: "text-green-400",
+    chipBg: "bg-green-500/10",
+    chipBorder: "border-green-500/20",
+    chipHoverBg: "hover:bg-green-500/20",
+  },
+};
+
 const skills: SkillGroup[] = [
+  {
+    category: "Stack IA & LLMs",
+    icon: "brain",
+    description: "Integración de modelos de lenguaje locales, pipelines RAG y automatización con IA",
+    accent: "green",
+    highlight: "Prompt Engineering",
+    technologies: [
+      { name: "Ollama", tier: 3 },
+      { name: "Prompt Engineering", tier: 4 },
+      { name: "RAG", tier: 3 },
+      { name: "Pipelines", tier: 3 },
+      { name: "Creación de Tools", tier: 3 },
+      { name: "MCP", tier: 2 },
+      { name: "N8N", tier: 3 },
+      { name: "Open WebUI", tier: 2 }
+    ]
+  },
   {
     category: "Frontend Development",
     icon: "monitor",
     description: "Interfaces modernas y experiencias de usuario excepcionales",
+    accent: "green",
+    highlight: "JavaScript",
     technologies: [
-      { name: "React", level: 80, color: "text-blue-400" },
-      { name: "Astro", level: 90, color: "text-orange-400" },
-      { name: "TypeScript", level: 88, color: "text-blue-500" },
-      { name: "JavaScript", level: 92, color: "text-yellow-400" },
-      { name: "Tailwind CSS", level: 96, color: "text-cyan-400" },
-      { name: "SASS", level: 85, color: "text-pink-400" }
+      { name: "React", tier: 3 },
+      { name: "Astro", tier: 4 },
+      { name: "TypeScript", tier: 3 },
+      { name: "JavaScript", tier: 4 },
+      { name: "Tailwind CSS", tier: 4 },
+      { name: "SASS", tier: 3 }
     ]
   },
   {
-    category: "Backend Development", 
+    category: "Backend Development",
     icon: "server",
     description: "APIs robustas y arquitecturas escalables",
+    accent: "green",
+    highlight: "PHP",
     technologies: [
-      { name: "Node.js", level: 93, color: "text-green-500" },
-      { name: "Python", level: 87, color: "text-yellow-400" },
-      { name: "PHP", level: 90, color: "text-purple-400" },
-      { name: "Express", level: 92, color: "text-gray-400" },
-      { name: "REST APIs", level: 94, color: "text-blue-300" }
+      { name: "Node.js", tier: 4 },
+      { name: "Python", tier: 3 },
+      { name: "PHP", tier: 4 },
+      { name: "Express", tier: 4 },
+      { name: "REST APIs", tier: 4 }
     ]
   },
   {
     category: "WordPress & E-commerce",
-    icon: "shopping-cart", 
+    icon: "shopping-cart",
     description: "Soluciones completas de comercio electrónico",
+    accent: "green",
+    highlight: "WooCommerce",
     technologies: [
-      { name: "WordPress", level: 94, color: "text-blue-600" },
-      { name: "WooCommerce", level: 92, color: "text-purple-500" },
-      { name: "Custom Themes", level: 90, color: "text-orange-400" },
-      { name: "Plugin Development", level: 95, color: "text-green-600" },
-      { name: "ACF", level: 90, color: "text-red-400" },
-      { name: "Elementor", level: 90, color: "text-pink-600" }
+      { name: "WordPress", tier: 4 },
+      { name: "WooCommerce", tier: 4 },
+      { name: "Custom Themes", tier: 4 },
+      { name: "Plugin Development", tier: 4 },
+      { name: "ACF", tier: 4 },
+      { name: "Elementor", tier: 4 }
     ]
   },
   {
     category: "Database & DevOps",
     icon: "database",
     description: "Gestión de datos y despliegue en la nube",
+    accent: "green",
+    highlight: "MySQL",
     technologies: [
-      { name: "MongoDB", level: 80, color: "text-green-400" },
-      { name: "MariaDB", level: 88, color: "text-blue-500" },
-      { name: "MySQL", level: 91, color: "text-orange-500" },
-      { name: "AWS", level: 60, color: "text-yellow-600" },
-      { name: "Docker", level: 70, color: "text-blue-500" },
-      { name: "Git", level: 90, color: "text-red-500" }
+      { name: "MongoDB", tier: 3 },
+      { name: "MariaDB", tier: 3 },
+      { name: "MySQL", tier: 4 },
+      { name: "AWS", tier: 2 },
+      { name: "Docker", tier: 2 },
+      { name: "Git", tier: 4 }
     ]
   }
 ];
@@ -83,6 +145,9 @@ const icons: Record<IconType, string> = {
   </svg>`,
   database: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+  </svg>`,
+  brain: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
   </svg>`
 };
 ---
@@ -104,203 +169,130 @@ const icons: Record<IconType, string> = {
     </p>
   </div>
 
-  <!-- Skills Grid -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    {skills.map((skillGroup, index) => (
-      <div 
-        class="group glass rounded-3xl p-8 border border-white/10 hover:border-green-500/30 transition-all duration-500 hover:transform hover:scale-[1.02] skill-card"
-        style={`animation-delay: ${index * 0.2}s`}
-      >
-        <!-- Header del skill group -->
-        <div class="flex items-center gap-4 mb-6">
-          <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300">
-            <Fragment set:html={icons[skillGroup.icon as IconType]} />
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold text-white mb-1">
-              {skillGroup.category}
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              {skillGroup.description}
-            </p>
-          </div>
-        </div>
-
-        <!-- Technologies con barras de progreso -->
-        <div class="space-y-4">
-          {skillGroup.technologies.map((tech, techIndex) => (
-            <div class="group/tech">
-              <div class="flex items-center justify-between mb-2">
-                <span class={`font-medium ${tech.color} flex items-center gap-2`}>
-                  <div class={`w-2 h-2 rounded-full bg-current`}></div>
-                  {tech.name}
-                </span>
-                <span class="text-xs text-gray-500 font-mono">
-                  {tech.level}%
-                </span>
-              </div>
-              <!-- Barra de progreso -->
-              <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                <div 
-                  class="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full transition-all duration-1000 ease-out progress-bar"
-                  style={`width: 0%; --target-width: ${tech.level}%; animation-delay: ${(index * 0.3) + (techIndex * 0.1)}s`}
-                ></div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Footer stats -->
-        <div class="mt-8 pt-6 border-t border-white/10">
-          <div class="flex items-center justify-between text-sm">
-            <span class="text-gray-400">
-              {skillGroup.technologies.length} tecnologías
-            </span>
-            <div class="flex items-center gap-2 text-green-500">
-              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span class="font-medium">Nivel avanzado</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
+  <!-- Filter Options -->
+  <div class="flex justify-center mb-12">
+    <div class="flex flex-wrap gap-3 bg-gray-800/30 p-2 rounded-2xl border border-white/10">
+      <button class="skills-filter-btn active px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="all">
+        Todas
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Stack IA & LLMs">
+        Stack IA
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Frontend Development">
+        Frontend
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Backend Development">
+        Backend
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="WordPress &amp; E-commerce">
+        WordPress
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Database &amp; DevOps">
+        Database
+      </button>
+    </div>
   </div>
 
-  <!-- LLM Stack Section -->
-  <div class="mt-8 group glass rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 skill-card llm-card"
-       style="animation-delay: 0.8s">
-    <!-- Header -->
-    <div class="flex items-center gap-4 mb-8">
-      <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-        </svg>
-      </div>
-      <div>
-        <h3 class="text-2xl font-bold text-white mb-1">Stack IA & LLMs</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">Integración de modelos de lenguaje locales, pipelines RAG y automatización con IA</p>
-      </div>
-      <div class="ml-auto hidden sm:flex items-center gap-2 text-purple-400">
-        <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-        <span class="text-sm font-medium">En evolución</span>
-      </div>
-    </div>
+  <!-- Skills Grid (incluye Stack IA & LLMs como una tarjeta más, mismo formato) -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {skills.map((skillGroup, index) => {
+      const accent = accentThemes[skillGroup.accent];
+      return (
+        <div
+          class={`group glass rounded-3xl p-8 border ${accent.border} ${accent.hoverBorder} transition-all duration-500 hover:transform hover:scale-[1.02] skill-card`}
+          data-category={skillGroup.category}
+          style={`animation-delay: ${(index + 1) * 0.2}s`}
+        >
+          <!-- Header del skill group -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class={`flex-shrink-0 w-16 h-16 bg-gradient-to-br ${accent.iconBg} rounded-2xl flex items-center justify-center ${accent.iconText} group-hover:scale-110 transition-transform duration-300`}>
+              <Fragment set:html={icons[skillGroup.icon as IconType]} />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-1">
+                {skillGroup.category}
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                {skillGroup.description}
+              </p>
+            </div>
+          </div>
 
-    <!-- Highlight RAG badge -->
-    <div class="mb-6">
-      <span class="inline-flex items-center gap-2 bg-purple-500/10 text-purple-300 border border-purple-500/20 px-4 py-2 rounded-full text-sm font-medium">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
-        </svg>
-        Retrieval-Augmented Generation (RAG)
-      </span>
-    </div>
+          <!-- Technologies: chips compactos con nivel indicado por puntos -->
+          <div class="flex flex-wrap gap-3">
+            {skillGroup.technologies.map((tech) => {
+              const label = tierLabels[tech.tier];
+              return (
+                <div
+                  class={`tech-chip flex items-center gap-2 ${accent.techText} ${accent.chipBg} ${accent.chipBorder} ${accent.chipHoverBg} px-4 py-2 rounded-full text-sm border transition-all duration-300`}
+                  role="img"
+                  aria-label={`${tech.name}: ${label}`}
+                >
+                  <span class="font-medium">{tech.name}</span>
+                  <span class="tier-dots" aria-hidden="true">
+                    {[1, 2, 3, 4].map((n) => (
+                      <span class={`tier-dot ${n <= tech.tier ? "filled" : ""}`}></span>
+                    ))}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
 
-    <!-- Tools grid — orden lógico del stack LLM -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- 1. Ollama — modelo base local -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
+          <!-- Footer stats -->
+          <div class="mt-8 pt-6 border-t border-white/10">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-400">
+                {skillGroup.technologies.length} tecnologías
+              </span>
+              <div class={`flex items-center gap-2 ${accent.iconText}`}>
+                <div class={`w-2 h-2 ${accent.dot} rounded-full animate-pulse`}></div>
+                <span class="font-medium">Punto fuerte: {skillGroup.highlight}</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <h4 class="text-white font-semibold mb-1">Ollama</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Ejecución local de LLMs (Qwen, Llama, Mistral) con integración vía API REST</p>
-      </div>
-
-      <!-- 2. Prompt Engineering — comunicación con el modelo -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Prompt Engineering</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Diseño de prompts de sistema, instrucciones estructuradas y técnicas como few-shot y chain-of-thought</p>
-      </div>
-
-      <!-- 3. RAG — conocimiento externo -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">RAG</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Retrieval-Augmented Generation con bases de datos vectoriales como Qdrant para búsqueda semántica contextual</p>
-      </div>
-
-      <!-- 4. Pipelines — orquestación del flujo -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Pipelines</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Diseño de flujos de procesamiento de datos e inferencia encadenada entre modelos, herramientas y fuentes de conocimiento</p>
-      </div>
-
-      <!-- 5. Creación de Tools — capacidades del agente -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Creación de Tools</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Desarrollo de herramientas personalizadas para agentes IA, permitiendo acceso a APIs, bases de datos y servicios externos</p>
-      </div>
-
-      <!-- 6. MCP — protocolo de conexión estándar -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">MCP</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Model Context Protocol para conectar LLMs con herramientas externas, APIs y fuentes de datos de forma estandarizada</p>
-      </div>
-
-      <!-- 7. N8N — automatización y orquestación -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">N8N</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Automatización de flujos de trabajo con nodos de IA, webhooks y conectores de servicios</p>
-      </div>
-
-      <!-- 8. Open WebUI — interfaz de interacción -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.13 8.13 0 01-2.939-.515l-5.637 1.406c-.365.092-.657-.215-.565-.565l1.406-5.637A8.13 8.13 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Open WebUI</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Interfaz web para gestión y uso de modelos locales con soporte de conocimiento personalizado</p>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="mt-6 pt-6 border-t border-purple-500/10">
-      <div class="flex items-center justify-between text-sm">
-        <span class="text-gray-400">8 herramientas</span>
-        <div class="sm:hidden flex items-center gap-2 text-purple-400">
-          <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-          <span class="font-medium">En evolución</span>
-        </div>
-      </div>
-    </div>
+      );
+    })}
   </div>
 
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.skills-filter-btn');
+    const skillCards = document.querySelectorAll<HTMLElement>('.skill-card[data-category]');
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        if (!filter) return;
+
+        filterButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        skillCards.forEach((card, index) => {
+          const category = card.getAttribute('data-category');
+          const shouldShow = filter === 'all' || category === filter;
+
+          if (shouldShow) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, index * 80);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  });
+</script>
 
 <style>
   /* Animaciones de entrada */
@@ -309,73 +301,112 @@ const icons: Record<IconType, string> = {
     transform: translateY(30px);
     animation: slideInUp 0.6s ease-out forwards;
   }
-  
+
   @keyframes slideInUp {
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
-  /* Animación de barras de progreso */
-  .progress-bar {
-    animation: fillProgress 1.5s ease-out forwards;
+
+  /* Chips de tecnología */
+  .tech-chip {
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.1);
   }
-  
-  @keyframes fillProgress {
-    from {
-      width: 0%;
-    }
-    to {
-      width: var(--target-width);
-    }
+
+  .tech-chip:hover {
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+    transform: translateY(-1px);
   }
-  
-  /* Efectos hover mejorados */
-  .group:hover .progress-bar {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+
+  /* Puntos de nivel dentro del chip (reemplazan la barra de porcentaje) */
+  .tier-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 2px;
   }
-  
+
+  .tier-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .tier-dot.filled {
+    background: currentColor;
+    border-color: currentColor;
+  }
+
+  /* Filtros */
+  .skills-filter-btn {
+    color: #9ca3af;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .skills-filter-btn:hover,
+  .skills-filter-btn.active {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+  }
+
   /* Modo claro */
   html.light .skill-card {
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(253, 251, 246,0.8);
+    border: 1px solid rgba(34, 197, 94, 0.15);
   }
 
-  html.light .llm-card {
-    border-color: rgba(168, 85, 247, 0.2) !important;
-  }
-
-  html.light .llm-card:hover {
-    border-color: rgba(168, 85, 247, 0.4) !important;
-  }
-  
   html.light .text-white {
     color: #1f2937 !important;
   }
-  
+
   html.light .text-gray-400 {
     color: #6b7280 !important;
   }
-  
+
   html.light .text-gray-500 {
     color: #9ca3af !important;
   }
-  
+
   html.light .bg-gray-800 {
     background-color: #e5e7eb !important;
   }
-  
+
+  html.light .tech-chip {
+    background: rgba(34, 197, 94, 0.15) !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+    color: #059669 !important;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
+  }
+
+  html.light .tech-chip:hover {
+    background: rgba(34, 197, 94, 0.25) !important;
+    border-color: rgba(34, 197, 94, 0.4) !important;
+  }
+
+  html.light .tier-dot {
+    border-color: rgba(0, 0, 0, 0.3);
+  }
+
+  html.light .tier-dot.filled {
+    border-color: #059669;
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .skill-card {
       padding: 1.5rem;
     }
-    
+
     .skill-card h3 {
       font-size: 1.25rem;
     }
-    
+
     .skill-card .w-16.h-16 {
       width: 3rem;
       height: 3rem;

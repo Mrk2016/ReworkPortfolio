@@ -92,7 +92,7 @@
       >
         <!-- Moon icon (dark mode) -->
         <svg
-          class="w-5 h-5 text-blue-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:scale-110"
+          class="moon-icon w-5 h-5 text-blue-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:scale-110"
           id="moon-icon"
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -103,7 +103,7 @@
         </svg>
         <!-- Sun icon (light mode) -->
         <svg
-          class="w-5 h-5 text-yellow-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 opacity-0 group-hover:scale-110"
+          class="sun-icon w-5 h-5 text-yellow-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 opacity-0 group-hover:scale-110"
           id="sun-icon"
           fill="currentColor"
           viewBox="0 0 20 20"
@@ -124,25 +124,59 @@
       class="bg-gray-900/40 backdrop-blur-md border border-white/10 rounded-xl px-4 py-2"
     >
       <a href="#" class="text-xl font-bold text-green-500 no-underline">
-        &#123;Mrk/&#125;
+        &#60;Mrk/&#62;
       </a>
     </div>
 
-    <!-- Mobile menu button con container profesional -->
-    <div
-      class="bg-gray-900/40 backdrop-blur-md border border-white/10 rounded-xl p-2"
-    >
-      <button
-        class="w-10 h-10 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg flex items-center justify-center text-white text-xl z-[110] relative transition-all duration-300"
-        id="mobile-menu-btn"
+    <!-- Right controls: theme toggle + menu button -->
+    <div class="flex items-center gap-3">
+      <!-- Mobile theme toggle -->
+      <div
+        class="bg-gray-900/40 backdrop-blur-md border border-white/10 rounded-xl p-2"
       >
-        <span id="hamburger-icon" class="transition-transform duration-300"
-          >☰</span
+        <button
+          id="theme-toggle-mobile"
+          class="w-10 h-10 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg relative transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 group"
+          aria-label="Cambiar tema"
         >
-        <span id="close-icon" class="hidden transition-transform duration-300"
-          >✕</span
+          <svg
+            class="moon-icon w-5 h-5 text-blue-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:scale-110"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <svg
+            class="sun-icon w-5 h-5 text-yellow-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 opacity-0 group-hover:scale-110"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu button con container profesional -->
+      <div
+        class="bg-gray-900/40 backdrop-blur-md border border-white/10 rounded-xl p-2"
+      >
+        <button
+          class="w-10 h-10 bg-gray-800/50 hover:bg-gray-700/50 rounded-lg flex items-center justify-center text-white text-xl z-[110] relative transition-all duration-300"
+          id="mobile-menu-btn"
         >
-      </button>
+          <span id="hamburger-icon" class="transition-transform duration-300"
+            >☰</span
+          >
+          <span id="close-icon" class="hidden transition-transform duration-300"
+            >✕</span
+          >
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -178,7 +212,7 @@
       <!-- Mobile Logo en el menú -->
       <div class="text-center mb-8">
         <div class="text-3xl font-bold text-green-500 mb-2">
-          &#123;Mrk/&#125;
+          &#60;Mrk/&#62;
         </div>
         <div
           class="w-16 h-0.5 bg-gradient-to-r from-green-500 to-green-400 mx-auto"
@@ -272,11 +306,13 @@
 </header>
 
 <script>
-  // Theme toggle functionality (Desktop only)
-  const themeToggle = document.getElementById("theme-toggle");
-  const sunIcon = document.getElementById("sun-icon");
-  const moonIcon = document.getElementById("moon-icon");
+  // Theme toggle functionality (works on desktop and mobile)
   const html = document.documentElement;
+  const themeToggles = document.querySelectorAll<HTMLButtonElement>(
+    "#theme-toggle, #theme-toggle-mobile"
+  );
+  const moonIcons = document.querySelectorAll<HTMLElement>(".moon-icon");
+  const sunIcons = document.querySelectorAll<HTMLElement>(".sun-icon");
 
   // Mobile menu functionality
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
@@ -286,38 +322,29 @@
   const mobileLinks = document.querySelectorAll(".mobile-link");
   const mobileCloseBtn = document.getElementById("mobile-close-btn");
 
-  // Check for saved theme preference or default to 'dark'
-  const currentTheme = localStorage.getItem("theme") || "dark";
-
-  // Set initial theme (Desktop only)
-  if (window.innerWidth >= 768 && themeToggle) {
-    if (currentTheme === "light") {
+  function applyTheme(isLight: boolean) {
+    if (isLight) {
       html.classList.add("light");
-      moonIcon?.classList.add("opacity-0");
-      sunIcon?.classList.remove("opacity-0");
+      moonIcons.forEach((icon) => icon.classList.add("opacity-0"));
+      sunIcons.forEach((icon) => icon.classList.remove("opacity-0"));
+      localStorage.setItem("theme", "light");
     } else {
-      // Dark mode (default)
       html.classList.remove("light");
-      moonIcon?.classList.remove("opacity-0");
-      sunIcon?.classList.add("opacity-0");
+      moonIcons.forEach((icon) => icon.classList.remove("opacity-0"));
+      sunIcons.forEach((icon) => icon.classList.add("opacity-0"));
+      localStorage.setItem("theme", "dark");
     }
   }
 
-  // Toggle theme (Desktop only)
-  themeToggle?.addEventListener("click", () => {
-    if (html.classList.contains("light")) {
-      // Switch to dark mode
-      html.classList.remove("light");
-      moonIcon?.classList.remove("opacity-0");
-      sunIcon?.classList.add("opacity-0");
-      localStorage.setItem("theme", "dark");
-    } else {
-      // Switch to light mode
-      html.classList.add("light");
-      moonIcon?.classList.add("opacity-0");
-      sunIcon?.classList.remove("opacity-0");
-      localStorage.setItem("theme", "light");
-    }
+  // Set initial theme (now consistent across all breakpoints)
+  const currentTheme = localStorage.getItem("theme") || "dark";
+  applyTheme(currentTheme === "light");
+
+  // Toggle theme (desktop and mobile buttons share the same behavior)
+  themeToggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      applyTheme(!html.classList.contains("light"));
+    });
   });
 
   // Function to close mobile menu
@@ -404,30 +431,55 @@
 
   // Initial call
   updateActiveSection();
+
+  // Darken header background once the user scrolls, for legibility
+  const mainHeader = document.getElementById("main-header");
+  function updateHeaderBackground() {
+    if (mainHeader) {
+      mainHeader.classList.toggle("scrolled", window.scrollY > 20);
+    }
+  }
+  window.addEventListener("scroll", updateHeaderBackground);
+  updateHeaderBackground();
 </script>
 
 <style>
+  /* Fondo del header al hacer scroll (mejora legibilidad sobre el fondo animado) */
+  #main-header.scrolled {
+    background: rgba(10, 10, 10, 0.7);
+  }
+
+  html.light #main-header.scrolled {
+    background: rgba(253, 251, 246, 0.85);
+  }
+
   /* Modo claro */
   html.light header {
-    border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    border-bottom: 1px solid rgba(34, 197, 94, 0.15);
+  }
+
+  /* El ícono del sol se mantiene amarillo vivo en modo claro (no lo oscurece
+     la regla global que ajusta el texto amarillo para contraste) */
+  html.light .sun-icon {
+    color: #eab308 !important;
   }
 
   html.light #theme-toggle {
-    background: rgba(241, 245, 249, 0.8) !important;
+    background: rgba(245, 239, 224, 0.8) !important;
   }
 
   html.light #theme-toggle:hover {
-    background: rgba(226, 232, 240, 0.9) !important;
+    background: rgba(235, 224, 204, 0.9) !important;
   }
 
   html.light .bg-gray-900\/40 {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-color: rgba(148, 163, 184, 0.3) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: rgba(253, 251, 246, 0.9) !important;
+    border-color: rgba(34, 197, 94, 0.2) !important;
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.08);
   }
 
   html.light .bg-gray-800\/50 {
-    background: rgba(241, 245, 249, 0.9) !important;
+    background: rgba(245, 239, 224, 0.9) !important;
   }
 
   html.light .text-white {
