@@ -2,70 +2,150 @@
 
 // Definir tipos de iconos
 type IconType = 'monitor' | 'server' | 'shopping-cart' | 'database';
+type AccentKey = 'blue' | 'orange' | 'cyan' | 'amber';
 
 interface Technology {
   name: string;
-  level: number;
-  color: string;
+  tier: 1 | 2 | 3 | 4; // 1: Básico, 2: Intermedio, 3: Avanzado, 4: Experto
 }
 
 interface SkillGroup {
   category: string;
   icon: IconType;
   description: string;
+  accent: AccentKey;
+  highlight: string;
   technologies: Technology[];
 }
+
+const tierLabels: Record<number, string> = {
+  1: "Básico",
+  2: "Intermedio",
+  3: "Avanzado",
+  4: "Experto",
+};
+
+const tierWidth: Record<number, number> = {
+  1: 25,
+  2: 50,
+  3: 75,
+  4: 100,
+};
+
+interface AccentTheme {
+  iconBg: string;
+  iconText: string;
+  border: string;
+  hoverBorder: string;
+  dot: string;
+  techText: string;
+  barFrom: string;
+  barTo: string;
+}
+
+// Un acento de color por categoría (no por tecnología individual),
+// siguiendo el mismo patrón que ya usa la tarjeta de Stack IA (morado).
+const accentThemes: Record<AccentKey, AccentTheme> = {
+  blue: {
+    iconBg: "from-blue-500/20 to-blue-600/20",
+    iconText: "text-blue-400",
+    border: "border-white/10",
+    hoverBorder: "hover:border-blue-500/30",
+    dot: "bg-blue-400",
+    techText: "text-blue-400",
+    barFrom: "from-blue-500",
+    barTo: "to-blue-400",
+  },
+  orange: {
+    iconBg: "from-orange-500/20 to-orange-600/20",
+    iconText: "text-orange-400",
+    border: "border-white/10",
+    hoverBorder: "hover:border-orange-500/30",
+    dot: "bg-orange-400",
+    techText: "text-orange-400",
+    barFrom: "from-orange-500",
+    barTo: "to-orange-400",
+  },
+  cyan: {
+    iconBg: "from-cyan-500/20 to-cyan-600/20",
+    iconText: "text-cyan-400",
+    border: "border-white/10",
+    hoverBorder: "hover:border-cyan-500/30",
+    dot: "bg-cyan-400",
+    techText: "text-cyan-400",
+    barFrom: "from-cyan-500",
+    barTo: "to-cyan-400",
+  },
+  amber: {
+    iconBg: "from-amber-500/20 to-amber-600/20",
+    iconText: "text-amber-400",
+    border: "border-white/10",
+    hoverBorder: "hover:border-amber-500/30",
+    dot: "bg-amber-400",
+    techText: "text-amber-400",
+    barFrom: "from-amber-500",
+    barTo: "to-amber-400",
+  },
+};
 
 const skills: SkillGroup[] = [
   {
     category: "Frontend Development",
     icon: "monitor",
     description: "Interfaces modernas y experiencias de usuario excepcionales",
+    accent: "blue",
+    highlight: "Tailwind CSS",
     technologies: [
-      { name: "React", level: 80, color: "text-blue-400" },
-      { name: "Astro", level: 90, color: "text-orange-400" },
-      { name: "TypeScript", level: 88, color: "text-blue-500" },
-      { name: "JavaScript", level: 92, color: "text-yellow-400" },
-      { name: "Tailwind CSS", level: 96, color: "text-cyan-400" },
-      { name: "SASS", level: 85, color: "text-pink-400" }
+      { name: "React", tier: 3 },
+      { name: "Astro", tier: 4 },
+      { name: "TypeScript", tier: 3 },
+      { name: "JavaScript", tier: 4 },
+      { name: "Tailwind CSS", tier: 4 },
+      { name: "SASS", tier: 3 }
     ]
   },
   {
-    category: "Backend Development", 
+    category: "Backend Development",
     icon: "server",
     description: "APIs robustas y arquitecturas escalables",
+    accent: "orange",
+    highlight: "Node.js",
     technologies: [
-      { name: "Node.js", level: 93, color: "text-green-500" },
-      { name: "Python", level: 87, color: "text-yellow-400" },
-      { name: "PHP", level: 90, color: "text-purple-400" },
-      { name: "Express", level: 92, color: "text-gray-400" },
-      { name: "REST APIs", level: 94, color: "text-blue-300" }
+      { name: "Node.js", tier: 4 },
+      { name: "Python", tier: 3 },
+      { name: "PHP", tier: 4 },
+      { name: "Express", tier: 4 },
+      { name: "REST APIs", tier: 4 }
     ]
   },
   {
     category: "WordPress & E-commerce",
-    icon: "shopping-cart", 
+    icon: "shopping-cart",
     description: "Soluciones completas de comercio electrónico",
+    accent: "cyan",
+    highlight: "WooCommerce",
     technologies: [
-      { name: "WordPress", level: 94, color: "text-blue-600" },
-      { name: "WooCommerce", level: 92, color: "text-purple-500" },
-      { name: "Custom Themes", level: 90, color: "text-orange-400" },
-      { name: "Plugin Development", level: 95, color: "text-green-600" },
-      { name: "ACF", level: 90, color: "text-red-400" },
-      { name: "Elementor", level: 90, color: "text-pink-600" }
+      { name: "WordPress", tier: 4 },
+      { name: "WooCommerce", tier: 4 },
+      { name: "Custom Themes", tier: 4 },
+      { name: "Plugin Development", tier: 4 },
+      { name: "ACF", tier: 4 },
+      { name: "Elementor", tier: 4 }
     ]
   },
   {
     category: "Database & DevOps",
     icon: "database",
     description: "Gestión de datos y despliegue en la nube",
+    accent: "amber",
+    highlight: "MySQL",
     technologies: [
-      { name: "MongoDB", level: 80, color: "text-green-400" },
-      { name: "MariaDB", level: 88, color: "text-blue-500" },
-      { name: "MySQL", level: 91, color: "text-orange-500" },
-      { name: "AWS", level: 60, color: "text-yellow-600" },
-      { name: "Docker", level: 70, color: "text-blue-500" },
-      { name: "Git", level: 90, color: "text-red-500" }
+      { name: "MongoDB", tier: 3 },
+      { name: "MariaDB", tier: 3 },
+      { name: "MySQL", tier: 4 },
+      { name: "AWS", tier: 2 },
+      { name: "Docker", tier: 2 },
+      { name: "Git", tier: 4 }
     ]
   }
 ];
@@ -104,71 +184,34 @@ const icons: Record<IconType, string> = {
     </p>
   </div>
 
-  <!-- Skills Grid -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    {skills.map((skillGroup, index) => (
-      <div 
-        class="group glass rounded-3xl p-8 border border-white/10 hover:border-green-500/30 transition-all duration-500 hover:transform hover:scale-[1.02] skill-card"
-        style={`animation-delay: ${index * 0.2}s`}
-      >
-        <!-- Header del skill group -->
-        <div class="flex items-center gap-4 mb-6">
-          <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-green-500/20 to-green-600/20 rounded-2xl flex items-center justify-center text-green-500 group-hover:scale-110 transition-transform duration-300">
-            <Fragment set:html={icons[skillGroup.icon as IconType]} />
-          </div>
-          <div>
-            <h3 class="text-2xl font-bold text-white mb-1">
-              {skillGroup.category}
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              {skillGroup.description}
-            </p>
-          </div>
-        </div>
-
-        <!-- Technologies con barras de progreso -->
-        <div class="space-y-4">
-          {skillGroup.technologies.map((tech, techIndex) => (
-            <div class="group/tech">
-              <div class="flex items-center justify-between mb-2">
-                <span class={`font-medium ${tech.color} flex items-center gap-2`}>
-                  <div class={`w-2 h-2 rounded-full bg-current`}></div>
-                  {tech.name}
-                </span>
-                <span class="text-xs text-gray-500 font-mono">
-                  {tech.level}%
-                </span>
-              </div>
-              <!-- Barra de progreso -->
-              <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
-                <div 
-                  class="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full transition-all duration-1000 ease-out progress-bar"
-                  style={`width: 0%; --target-width: ${tech.level}%; animation-delay: ${(index * 0.3) + (techIndex * 0.1)}s`}
-                ></div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <!-- Footer stats -->
-        <div class="mt-8 pt-6 border-t border-white/10">
-          <div class="flex items-center justify-between text-sm">
-            <span class="text-gray-400">
-              {skillGroup.technologies.length} tecnologías
-            </span>
-            <div class="flex items-center gap-2 text-green-500">
-              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span class="font-medium">Nivel avanzado</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    ))}
+  <!-- Filter Options -->
+  <div class="flex justify-center mb-12">
+    <div class="flex flex-wrap gap-3 bg-gray-800/30 p-2 rounded-2xl border border-white/10">
+      <button class="skills-filter-btn active px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="all">
+        Todas
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Stack IA">
+        Stack IA
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Frontend Development">
+        Frontend
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Backend Development">
+        Backend
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="WordPress &amp; E-commerce">
+        WordPress
+      </button>
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Database &amp; DevOps">
+        Database
+      </button>
+    </div>
   </div>
 
-  <!-- LLM Stack Section -->
-  <div class="mt-8 group glass rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 skill-card llm-card"
-       style="animation-delay: 0.8s">
+  <!-- LLM Stack Section (destacado primero: es el diferenciador más fuerte) -->
+  <div class="group glass rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 skill-card llm-card mb-8"
+       data-category="Stack IA"
+       style="animation-delay: 0s">
     <!-- Header -->
     <div class="flex items-center gap-4 mb-8">
       <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
@@ -300,7 +343,120 @@ const icons: Record<IconType, string> = {
     </div>
   </div>
 
+  <!-- Skills Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {skills.map((skillGroup, index) => {
+      const accent = accentThemes[skillGroup.accent];
+      return (
+        <div
+          class={`group glass rounded-3xl p-8 border ${accent.border} ${accent.hoverBorder} transition-all duration-500 hover:transform hover:scale-[1.02] skill-card`}
+          data-category={skillGroup.category}
+          style={`animation-delay: ${(index + 1) * 0.2}s`}
+        >
+          <!-- Header del skill group -->
+          <div class="flex items-center gap-4 mb-6">
+            <div class={`flex-shrink-0 w-16 h-16 bg-gradient-to-br ${accent.iconBg} rounded-2xl flex items-center justify-center ${accent.iconText} group-hover:scale-110 transition-transform duration-300`}>
+              <Fragment set:html={icons[skillGroup.icon as IconType]} />
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-white mb-1">
+                {skillGroup.category}
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed">
+                {skillGroup.description}
+              </p>
+            </div>
+          </div>
+
+          <!-- Technologies con niveles de dominio -->
+          <div class="space-y-4">
+            {skillGroup.technologies.map((tech, techIndex) => {
+              const width = tierWidth[tech.tier];
+              const label = tierLabels[tech.tier];
+              return (
+                <div class="group/tech">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class={`font-medium ${accent.techText} flex items-center gap-2`}>
+                      <div class={`w-2 h-2 rounded-full ${accent.dot}`}></div>
+                      {tech.name}
+                    </span>
+                    <span class="text-xs text-gray-500 font-mono">
+                      {label}
+                    </span>
+                  </div>
+                  <!-- Barra de nivel (segmentada por nivel, no un porcentaje arbitrario) -->
+                  <div
+                    class="h-2 bg-gray-800 rounded-full overflow-hidden"
+                    role="progressbar"
+                    aria-label={`${tech.name}: ${label}`}
+                    aria-valuenow={width}
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div
+                      class={`h-full bg-gradient-to-r ${accent.barFrom} ${accent.barTo} rounded-full transition-all duration-1000 ease-out progress-bar`}
+                      style={`width: 0%; --target-width: ${width}%; animation-delay: ${(index * 0.3) + (techIndex * 0.1)}s`}
+                    ></div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <!-- Footer stats -->
+          <div class="mt-8 pt-6 border-t border-white/10">
+            <div class="flex items-center justify-between text-sm">
+              <span class="text-gray-400">
+                {skillGroup.technologies.length} tecnologías
+              </span>
+              <div class={`flex items-center gap-2 ${accent.iconText}`}>
+                <div class={`w-2 h-2 ${accent.dot} rounded-full animate-pulse`}></div>
+                <span class="font-medium">Punto fuerte: {skillGroup.highlight}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.skills-filter-btn');
+    const skillCards = document.querySelectorAll<HTMLElement>('.skill-card[data-category]');
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        if (!filter) return;
+
+        filterButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        skillCards.forEach((card, index) => {
+          const category = card.getAttribute('data-category');
+          const shouldShow = filter === 'all' || category === filter;
+
+          if (shouldShow) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, index * 80);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  });
+</script>
 
 <style>
   /* Animaciones de entrada */
@@ -309,19 +465,19 @@ const icons: Record<IconType, string> = {
     transform: translateY(30px);
     animation: slideInUp 0.6s ease-out forwards;
   }
-  
+
   @keyframes slideInUp {
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+
   /* Animación de barras de progreso */
   .progress-bar {
     animation: fillProgress 1.5s ease-out forwards;
   }
-  
+
   @keyframes fillProgress {
     from {
       width: 0%;
@@ -330,12 +486,32 @@ const icons: Record<IconType, string> = {
       width: var(--target-width);
     }
   }
-  
+
   /* Efectos hover mejorados */
   .group:hover .progress-bar {
     box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
   }
-  
+
+  /* Filtros */
+  .skills-filter-btn {
+    color: #9ca3af;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .skills-filter-btn:hover,
+  .skills-filter-btn.active {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+  }
+
+  .skills-filter-btn[data-filter="Stack IA"].active,
+  .skills-filter-btn[data-filter="Stack IA"]:hover {
+    color: #a855f7;
+    background: rgba(168, 85, 247, 0.1);
+  }
+
   /* Modo claro */
   html.light .skill-card {
     background: rgba(255, 255, 255, 0.8);
@@ -349,33 +525,33 @@ const icons: Record<IconType, string> = {
   html.light .llm-card:hover {
     border-color: rgba(168, 85, 247, 0.4) !important;
   }
-  
+
   html.light .text-white {
     color: #1f2937 !important;
   }
-  
+
   html.light .text-gray-400 {
     color: #6b7280 !important;
   }
-  
+
   html.light .text-gray-500 {
     color: #9ca3af !important;
   }
-  
+
   html.light .bg-gray-800 {
     background-color: #e5e7eb !important;
   }
-  
+
   /* Responsive */
   @media (max-width: 768px) {
     .skill-card {
       padding: 1.5rem;
     }
-    
+
     .skill-card h3 {
       font-size: 1.25rem;
     }
-    
+
     .skill-card .w-16.h-16 {
       width: 3rem;
       height: 3rem;
