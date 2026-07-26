@@ -458,6 +458,12 @@
     border-bottom: 1px solid rgba(34, 197, 94, 0.15);
   }
 
+  /* El ícono del sol se mantiene amarillo vivo en modo claro (no lo oscurece
+     la regla global que ajusta el texto amarillo para contraste) */
+  html.light .sun-icon {
+    color: #eab308 !important;
+  }
+
   html.light #theme-toggle {
     background: rgba(245, 239, 224, 0.8) !important;
   }
