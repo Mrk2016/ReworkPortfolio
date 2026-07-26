@@ -1,8 +1,8 @@
 ---
 
 // Definir tipos de iconos
-type IconType = 'monitor' | 'server' | 'shopping-cart' | 'database';
-type AccentKey = 'blue' | 'orange' | 'cyan' | 'amber';
+type IconType = 'monitor' | 'server' | 'shopping-cart' | 'database' | 'brain';
+type AccentKey = 'blue' | 'orange' | 'cyan' | 'amber' | 'purple';
 
 interface Technology {
   name: string;
@@ -86,9 +86,36 @@ const accentThemes: Record<AccentKey, AccentTheme> = {
     barFrom: "from-amber-500",
     barTo: "to-amber-400",
   },
+  purple: {
+    iconBg: "from-purple-500/20 to-purple-600/20",
+    iconText: "text-purple-400",
+    border: "border-white/10",
+    hoverBorder: "hover:border-purple-500/30",
+    dot: "bg-purple-400",
+    techText: "text-purple-400",
+    barFrom: "from-purple-500",
+    barTo: "to-purple-400",
+  },
 };
 
 const skills: SkillGroup[] = [
+  {
+    category: "Stack IA & LLMs",
+    icon: "brain",
+    description: "Integración de modelos de lenguaje locales, pipelines RAG y automatización con IA",
+    accent: "purple",
+    highlight: "RAG",
+    technologies: [
+      { name: "Ollama", tier: 3 },
+      { name: "Prompt Engineering", tier: 4 },
+      { name: "RAG", tier: 3 },
+      { name: "Pipelines", tier: 3 },
+      { name: "Creación de Tools", tier: 3 },
+      { name: "MCP", tier: 2 },
+      { name: "N8N", tier: 3 },
+      { name: "Open WebUI", tier: 2 }
+    ]
+  },
   {
     category: "Frontend Development",
     icon: "monitor",
@@ -163,6 +190,9 @@ const icons: Record<IconType, string> = {
   </svg>`,
   database: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+  </svg>`,
+  brain: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
   </svg>`
 };
 ---
@@ -190,7 +220,7 @@ const icons: Record<IconType, string> = {
       <button class="skills-filter-btn active px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="all">
         Todas
       </button>
-      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Stack IA">
+      <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Stack IA & LLMs">
         Stack IA
       </button>
       <button class="skills-filter-btn px-6 py-2 rounded-xl text-sm font-medium transition-all duration-300" data-filter="Frontend Development">
@@ -208,142 +238,7 @@ const icons: Record<IconType, string> = {
     </div>
   </div>
 
-  <!-- LLM Stack Section (destacado primero: es el diferenciador más fuerte) -->
-  <div class="group glass rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 skill-card llm-card mb-8"
-       data-category="Stack IA"
-       style="animation-delay: 0s">
-    <!-- Header -->
-    <div class="flex items-center gap-4 mb-8">
-      <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-2xl flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-300">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-        </svg>
-      </div>
-      <div>
-        <h3 class="text-2xl font-bold text-white mb-1">Stack IA & LLMs</h3>
-        <p class="text-gray-400 text-sm leading-relaxed">Integración de modelos de lenguaje locales, pipelines RAG y automatización con IA</p>
-      </div>
-      <div class="ml-auto hidden sm:flex items-center gap-2 text-purple-400">
-        <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-        <span class="text-sm font-medium">En evolución</span>
-      </div>
-    </div>
-
-    <!-- Highlight RAG badge -->
-    <div class="mb-6">
-      <span class="inline-flex items-center gap-2 bg-purple-500/10 text-purple-300 border border-purple-500/20 px-4 py-2 rounded-full text-sm font-medium">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
-        </svg>
-        Retrieval-Augmented Generation (RAG)
-      </span>
-    </div>
-
-    <!-- Tools grid — orden lógico del stack LLM -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- 1. Ollama — modelo base local -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Ollama</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Ejecución local de LLMs (Qwen, Llama, Mistral) con integración vía API REST</p>
-      </div>
-
-      <!-- 2. Prompt Engineering — comunicación con el modelo -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Prompt Engineering</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Diseño de prompts de sistema, instrucciones estructuradas y técnicas como few-shot y chain-of-thought</p>
-      </div>
-
-      <!-- 3. RAG — conocimiento externo -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">RAG</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Retrieval-Augmented Generation con bases de datos vectoriales como Qdrant para búsqueda semántica contextual</p>
-      </div>
-
-      <!-- 4. Pipelines — orquestación del flujo -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Pipelines</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Diseño de flujos de procesamiento de datos e inferencia encadenada entre modelos, herramientas y fuentes de conocimiento</p>
-      </div>
-
-      <!-- 5. Creación de Tools — capacidades del agente -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Creación de Tools</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Desarrollo de herramientas personalizadas para agentes IA, permitiendo acceso a APIs, bases de datos y servicios externos</p>
-      </div>
-
-      <!-- 6. MCP — protocolo de conexión estándar -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">MCP</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Model Context Protocol para conectar LLMs con herramientas externas, APIs y fuentes de datos de forma estandarizada</p>
-      </div>
-
-      <!-- 7. N8N — automatización y orquestación -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">N8N</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Automatización de flujos de trabajo con nodos de IA, webhooks y conectores de servicios</p>
-      </div>
-
-      <!-- 8. Open WebUI — interfaz de interacción -->
-      <div class="bg-purple-500/5 border border-purple-500/15 rounded-2xl p-5 hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-1">
-        <div class="w-10 h-10 bg-purple-500/15 rounded-xl flex items-center justify-center mb-3">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.13 8.13 0 01-2.939-.515l-5.637 1.406c-.365.092-.657-.215-.565-.565l1.406-5.637A8.13 8.13 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
-          </svg>
-        </div>
-        <h4 class="text-white font-semibold mb-1">Open WebUI</h4>
-        <p class="text-gray-400 text-xs leading-relaxed">Interfaz web para gestión y uso de modelos locales con soporte de conocimiento personalizado</p>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="mt-6 pt-6 border-t border-purple-500/10">
-      <div class="flex items-center justify-between text-sm">
-        <span class="text-gray-400">8 herramientas</span>
-        <div class="sm:hidden flex items-center gap-2 text-purple-400">
-          <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-          <span class="font-medium">En evolución</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Skills Grid -->
+  <!-- Skills Grid (incluye Stack IA & LLMs como una tarjeta más, mismo formato) -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
     {skills.map((skillGroup, index) => {
       const accent = accentThemes[skillGroup.accent];
@@ -506,8 +401,8 @@ const icons: Record<IconType, string> = {
     background: rgba(34, 197, 94, 0.1);
   }
 
-  .skills-filter-btn[data-filter="Stack IA"].active,
-  .skills-filter-btn[data-filter="Stack IA"]:hover {
+  .skills-filter-btn[data-filter="Stack IA & LLMs"].active,
+  .skills-filter-btn[data-filter="Stack IA & LLMs"]:hover {
     color: #a855f7;
     background: rgba(168, 85, 247, 0.1);
   }
@@ -516,14 +411,6 @@ const icons: Record<IconType, string> = {
   html.light .skill-card {
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  html.light .llm-card {
-    border-color: rgba(168, 85, 247, 0.2) !important;
-  }
-
-  html.light .llm-card:hover {
-    border-color: rgba(168, 85, 247, 0.4) !important;
   }
 
   html.light .text-white {
